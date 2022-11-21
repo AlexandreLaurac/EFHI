@@ -12,21 +12,184 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="Vue de définition\nd'une séance"
-        android:textSize="40sp"/>
+        android:text="Définition d'une séance"
+        android:textSize="35sp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:gravity="center"
-        android:text="Ajouter les widgets permettant de définir les différents paramètres d'une séance : nombre de séquences, de cycles, durées diverses, etc., avec des bordures pour délimiter les différents éléments"
-        android:textSize="20sp"/>
+        android:text="Entrez les paramètres de votre séance"
+        android:textSize="15sp"/>
+
+
+    <!-- Préparation -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temps de préparation :"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/activity_choix_seance_definition_tpsPreparation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints=""/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="s"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+
+    <!-- Nombre de séquences -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="40dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre de séquences :"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/activity_choix_seance_definition_nbSequences"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints=""/>
+
+    </LinearLayout>
+
+
+    <!-- Nombre de cycles -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="80dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre de cycles :"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/activity_choix_seance_definition_nbCycles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints=""/>
+
+    </LinearLayout>
+
+
+    <!-- Temps de travail -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="120dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temps de travail :"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/activity_choix_seance_definition_tpsTravail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints=""/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="s"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+
+    <!-- Temps de travail -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="120dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temps de repos :"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/activity_choix_seance_definition_tpsRepos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints=""/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="s"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+
+    <!-- Temps de repos long -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="80dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temps de repos long :"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/activity_choix_seance_definition_tpsReposLong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints=""/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="s"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/activity_choix_seance_definition_bouton_valider"
@@ -57,10 +220,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:gravity="center"
         android:text="Le précédent bouton ne doit apparaitre que si tous les champs ont été remplis, ou s'ils ont été modifiés au cas où on serait arrivé à cette page par le bouton dernière séance"
-        android:textSize="20sp"/>
+        android:textSize="15sp"/>
 
 </LinearLayout>

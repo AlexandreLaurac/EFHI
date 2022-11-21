@@ -14,4 +14,17 @@ public class Seance {
         this.sequence = new Sequence (nbCycles, tpsReposLong, tpsTravail, tpsRepos) ;
     }
 
+    // Getters
+    public int getTpsPreparation() {
+        return tpsPreparation ;
+    }
+
+    public int getNbSequences() {
+        return nbSequences ;
+    }
+
+    public Sequence getSequence() {
+        return sequence ;
+    }
+
 }

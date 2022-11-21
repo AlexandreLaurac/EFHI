@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="Vue d'introduction\nà une séance"
         android:textSize="40sp"/>
@@ -27,6 +27,24 @@
         android:gravity="center"
         android:text="Vue ajoutée entre celles de choix des paramètres d'une séance et le lancement de la séance proprement dite, pour prévenir l'utilisateur. Trouver quels widgets afficher. Une image (pourquoi pas un coureur sur les starting blocks !) ? Du texte (Ex : 'La séance est prête, elle commencera lorsque vous cliquerez sur le bouton Commencer'. Prêt ?)"
         android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/activity_seance_introduction_TEMP_INTRO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:text="Donnée transmise de l'activité précédente"
+        />
+
+    <TextView
+        android:id="@+id/activity_seance_introduction_TEMP_DONNEE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:text="VALEUR"
+        />
 
     <Button
         android:id="@+id/activity_seance_introduction_bouton_commencer"
