@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ChoixSeanceDefinitionActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="Vue de définition\nd'une séance"
+        android:textSize="40sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+        android:text="Ajouter les widgets permettant de définir les différents paramètres d'une séance : nombre de séquences, de cycles, durées diverses, etc., avec des bordures pour délimiter les différents éléments"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/activity_choix_seance_definition_bouton_valider"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center"
+        android:text="Valider"
+        android:textSize="20sp"
+        android:onClick="clicBoutonValider"/>
+
+    <Button
+        android:id="@+id/activity_choix_seance_definition_bouton_enregistrer"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:text="Enregistrer"
+        android:textSize="20sp"
+        android:onClick="clicBoutonEnregistrer"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+        android:text="Le précédent bouton ne doit apparaitre que si tous les champs ont été remplis, ou s'ils ont été modifiés au cas où on serait arrivé à cette page par le bouton dernière séance"
+        android:textSize="20sp"/>
+
+</LinearLayout>
