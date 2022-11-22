@@ -1,10 +1,12 @@
-package com.example.efhi;
+package com.example.efhi.Activites;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.efhi.R;
 
 public class ChoixSeanceMenuActivity extends AppCompatActivity {
 

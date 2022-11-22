@@ -1,8 +1,10 @@
-package com.example.efhi;
+package com.example.efhi.Activites;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.efhi.R;
 
 public class ChoixSeancePresetsActivity extends AppCompatActivity {
 

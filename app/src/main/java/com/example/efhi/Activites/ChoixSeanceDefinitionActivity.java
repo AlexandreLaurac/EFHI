@@ -1,4 +1,4 @@
-package com.example.efhi;
+package com.example.efhi.Activites;
 
 import static java.lang.Integer.parseInt;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.example.efhi.Modele.Seance;
+import com.example.efhi.Modele.Donnees.Seance;
+import com.example.efhi.Modele.MonApplication;
+import com.example.efhi.R;
+
 import java.util.ArrayList;
 
 

@@ -1,4 +1,4 @@
-package com.example.efhi.Modele ;
+package com.example.efhi.Modele.Donnees;
 
 public class Seance {
 

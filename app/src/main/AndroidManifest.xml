@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name=".MonApplication"
+        android:name=".Modele.MonApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,56 +14,56 @@
         android:theme="@style/Theme.AppCompat.DayNight"
         tools:targetApi="31">
         <activity
-            android:name=".ChoixSeancePresetsActivity"
+            android:name=".Activites.ChoixSeancePresetsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ChoixSeanceEnregistreesActivity"
+            android:name=".Activites.ChoixSeanceEnregistreesActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SeanceConclusionActivity"
+            android:name=".Activites.SeanceConclusionActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SeanceActivity"
+            android:name=".Activites.SeanceActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SeanceIntroductionActivity"
+            android:name=".Activites.SeanceIntroductionActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ChoixSeanceDefinitionActivity"
+            android:name=".Activites.ChoixSeanceDefinitionActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ChoixSeanceMenuActivity"
+            android:name=".Activites.ChoixSeanceMenuActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".EcranAccueilActivity"
+            android:name=".Activites.EcranAccueilActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

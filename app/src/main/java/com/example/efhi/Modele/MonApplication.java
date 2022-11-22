@@ -1,7 +1,7 @@
-package com.example.efhi ;
+package com.example.efhi.Modele;
 
 import android.app.Application ;
-import com.example.efhi.Modele.Seance ;
+import com.example.efhi.Modele.Donnees.Seance;
 
 public class MonApplication extends Application {
 
