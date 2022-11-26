@@ -14,4 +14,30 @@ public class Sequence {
         this.cycle = new Cycle (tpsTravail, tpsRepos) ;
     }
 
+    // Getters
+    public int getNbCycles() {
+        return nbCycles ;
+    }
+
+    public int getTpsReposLong() {
+        return tpsReposLong ;
+    }
+
+    public Cycle getCycle() {
+        return cycle ;
+    }
+
+    // Setters
+    public void setNbCycles (int nbCycles) {
+        this.nbCycles = nbCycles ;
+    }
+
+    public void setTpsReposLong (int tpsReposLong) {
+        this.tpsReposLong = tpsReposLong ;
+    }
+
+    public void setCycle (int tpsTravail, int tpsRepos) {
+        this.cycle.setTpsTravail(tpsTravail) ;
+        this.cycle.setTpsRepos(tpsRepos) ;
+    }
 }

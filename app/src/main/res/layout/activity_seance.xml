@@ -12,42 +12,109 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="Vue principale\nde séance"
-        android:textSize="40sp"/>
+        android:text="Séance"
+        android:textSize="35dp"/>
+
+    <!-- Panneau de situation dans la séance -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50px"
+        android:orientation="vertical">
+
+        <!-- Préparation -->
+        <TextView
+            android:id="@+id/activity_seance_textePreparation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="40dp"
+            android:text="Préparation : Xs"
+            android:textSize="20sp" />
+
+        <!-- Séquences -->
+        <TextView
+            android:id="@+id/activity_seance_texteSequence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="40dp"
+            android:text="Séquence n°X"
+            android:textSize="20sp"/>
+
+        <!-- Cycles -->
+        <TextView
+            android:id="@+id/activity_seance_texteCycle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="80dp"
+            android:text="Cycle n°Y"
+            android:textSize="20sp"/>
+
+        <!-- Travail -->
+        <TextView
+            android:id="@+id/activity_seance_texteTravail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="120dp"
+            android:text="Travail : Zs"
+            android:textSize="20sp"/>
+
+        <!-- Repos -->
+        <TextView
+            android:id="@+id/activity_seance_texteRepos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="120dp"
+            android:text="Repos : Zs"
+            android:textSize="20sp"/>
+
+        <!-- Repos long -->
+        <TextView
+            android:id="@+id/activity_seance_texteReposLong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="80dp"
+            android:text="Repos long : Zs"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
 
     <TextView
+        android:id="@+id/activity_seance_Compteur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:gravity="center"
-        android:text="Design encore à faire... Voir s'il faut d'autres vues et activités ou si celle-ci suffit à elle-seule"
-        android:textSize="20sp"/>
+        android:layout_marginTop="50dp"
+        android:textSize="50sp"
+        android:text="00:00:00" />
 
-    <Button
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:paddingTop="7dp"
-        android:paddingBottom="7dp"
-        android:layout_marginTop="40dp"
-        android:layout_gravity="center"
-        android:text="Page suivante"
-        android:textSize="20sp"
-        android:onClick="clicBoutonPageSuivante"/>
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:gravity="center"
-        android:text="(Normalement on passe à la vue suivante lorsque la séance se termine, donc bouton précédent inutile. Il reste ici tant que l'activité n'est pas écrite"
-        android:textSize="20sp"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/activity_seance_boutonPause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:text="pause"
+            android:textSize="20sp"
+            android:onClick="onPauseCompteur"/>
+
+    </LinearLayout>
 
 </LinearLayout>

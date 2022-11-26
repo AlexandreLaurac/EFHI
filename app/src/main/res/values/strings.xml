@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">EFHI</string>
     <string name="activity_ecran_accueil_texte1_bienvenue">Bienvenue dans</string>
-    <string name="activity_ecran_accueil_texte2_titre">E F H I</string>
+    <string name="activity_ecran_accueil_texte2_titre">EFHI</string>
     <string name="activity_ecran_accueil_texte3_application">l\'application d\'entraînement fractionné de haute intensité</string>
     <string name="activity_ecran_accueil_bouton1_commencer">commencer</string>
 

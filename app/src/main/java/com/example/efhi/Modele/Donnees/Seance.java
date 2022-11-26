@@ -27,4 +27,18 @@ public class Seance {
         return sequence ;
     }
 
+    // Setters
+    public void setTpsPreparation (int tpsPreparation) {
+        this.tpsPreparation = tpsPreparation ;
+    }
+
+    public void setNbSequences (int nbSequences) {
+        this.nbSequences = nbSequences ;
+    }
+
+    public void setSequence (int nbCycles, int tpsReposLong, int tpsTravail, int tpsRepos) {
+        this.sequence.setNbCycles(nbCycles) ;
+        this.sequence.setTpsReposLong(tpsReposLong) ;
+        this.sequence.setCycle(tpsTravail, tpsRepos) ;
+    }
 }
