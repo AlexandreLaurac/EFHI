@@ -43,20 +43,8 @@ public class ChoixSeanceDefinitionActivity extends AppCompatActivity {
     public void clicBoutonValider (View view) {
 
         // Vérification du remplissage des données
-/*
-        int nbEditTextRemplis = 0 ;
-        for (EditText editText : listeEditText) {
-            String contenuEditTextCourant = editText.getText().toString() ;
-            if (!contenuEditTextCourant.isEmpty()) {
-                nbEditTextRemplis++ ;
-            }
-        }
-        if (nbEditTextRemplis < listeEditText.size()) {
-            Toast.makeText(getApplicationContext(), "Remplissez tous les champs avant de lancer les exercices", Toast.LENGTH_SHORT).show() ;
-        }
-*/
         int i = 0 ;
-        while (i < listeEditText.size() && !listeEditText.get(i).getText().toString().isEmpty()) {
+        while (i < listeEditText.size() && !listeEditText.get(i).getText().toString().isEmpty()) { // tant que l'EditText n°i n'est pas vide, on continue
             i++ ;
         }
         if (i < listeEditText.size()) {
@@ -64,7 +52,7 @@ public class ChoixSeanceDefinitionActivity extends AppCompatActivity {
         }
         // Récupération et stockage des données dans un objet seance
         else {
-            // Récupération du contenu des différents EditText  -- A FAIRE : VERIFICATION DES DONNEES !!!
+            // Récupération du contenu des différents EditText  -- A FAIRE : VERIFICATION DES DONNEES !!! OU ALORS AFFICHER UN CLAVIER QUI NE PROPOSE QUE DES NOMBRES
             int tpsPreparation = parseInt (preparation.getText().toString()) ;
             int nbSequences = parseInt (sequences.getText().toString()) ;
             int nbCycles = parseInt (cycles.getText().toString()) ;
@@ -73,7 +61,7 @@ public class ChoixSeanceDefinitionActivity extends AppCompatActivity {
             int tpsReposLong = parseInt (reposLong.getText().toString()) ;
 
             // Creation d'un objet de données de type Seance et ajout à la classe MonApplication
-            Seance seance = new Seance (tpsPreparation, nbSequences, nbCycles, tpsReposLong, tpsTravail, tpsRepos) ;
+            Seance seance = new Seance (tpsPreparation, nbSequences, nbCycles, tpsTravail, tpsRepos, tpsReposLong) ;
             ((MonApplication) ChoixSeanceDefinitionActivity.this.getApplication()).setSeance(seance) ;
 
             // Lancement de l'activité suivante

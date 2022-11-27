@@ -15,13 +15,13 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="Séance"
-        android:textSize="35dp"/>
+        android:textSize="50sp"/>
 
     <!-- Panneau de situation dans la séance -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50px"
+        android:layout_marginTop="35dp"
         android:orientation="vertical">
 
         <!-- Préparation -->
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginStart="40dp"
-            android:text="Séquence n°X"
+            android:text="Séquence"
             android:textSize="20sp"/>
 
         <!-- Cycles -->
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginStart="80dp"
-            android:text="Cycle n°Y"
+            android:text="Cycle"
             android:textSize="20sp"/>
 
         <!-- Travail -->
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginStart="120dp"
-            android:text="Travail : Zs"
+            android:text="Travail : X s"
             android:textSize="20sp"/>
 
         <!-- Repos -->
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginStart="120dp"
-            android:text="Repos : Zs"
+            android:text="Repos : Y s"
             android:textSize="20sp"/>
 
         <!-- Repos long -->
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginStart="80dp"
-            android:text="Repos long : Zs"
+            android:text="Repos long : Z s"
             android:textSize="20sp"/>
 
     </LinearLayout>
@@ -91,7 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:textSize="50sp"
         android:text="00:00:00" />
 
@@ -99,7 +99,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_gravity="center"
         android:orientation="horizontal">
 

@@ -1,17 +1,23 @@
-package com.example.efhi.Modele.Donnees;
+package com.example.efhi.Modele.Donnees ;
 
 public class Seance {
 
     // Attributs
     private int tpsPreparation ;
     private int nbSequences ;
-    private Sequence sequence ;
+    private int nbCycles ;
+    private int tpsTravail ;
+    private int tpsRepos ;
+    private int tpsReposLong ;
 
     // Constructeur
-    public Seance (int tpsPreparation, int nbSequences, int nbCycles, int tpsReposLong, int tpsTravail, int tpsRepos) {
+    public Seance (int tpsPreparation, int nbSequences, int nbCycles, int tpsTravail, int tpsRepos, int tpsReposLong) {
         this.tpsPreparation = tpsPreparation ;
         this.nbSequences = nbSequences ;
-        this.sequence = new Sequence (nbCycles, tpsReposLong, tpsTravail, tpsRepos) ;
+        this.nbCycles = nbCycles ;
+        this.tpsTravail = tpsTravail ;
+        this.tpsRepos = tpsRepos ;
+        this.tpsReposLong = tpsReposLong ;
     }
 
     // Getters
@@ -23,8 +29,20 @@ public class Seance {
         return nbSequences ;
     }
 
-    public Sequence getSequence() {
-        return sequence ;
+    public int getNbCycles() {
+        return nbCycles ;
+    }
+
+    public int getTpsTravail() {
+        return tpsTravail ;
+    }
+
+    public int getTpsRepos() {
+        return tpsRepos ;
+    }
+
+    public int getTpsReposLong() {
+        return tpsReposLong ;
     }
 
     // Setters
@@ -36,9 +54,19 @@ public class Seance {
         this.nbSequences = nbSequences ;
     }
 
-    public void setSequence (int nbCycles, int tpsReposLong, int tpsTravail, int tpsRepos) {
-        this.sequence.setNbCycles(nbCycles) ;
-        this.sequence.setTpsReposLong(tpsReposLong) ;
-        this.sequence.setCycle(tpsTravail, tpsRepos) ;
+    public void setNbCycles (int nbCycles) {
+        this.nbCycles = nbCycles ;
+    }
+
+    public void setTpsTravail (int tpsTravail) {
+        this.tpsTravail = tpsTravail ;
+    }
+
+    public void setTpsRepos (int tpsRepos) {
+        this.tpsRepos = tpsRepos ;
+    }
+
+    public void setTpsReposLong (int tpsReposLong) {
+        this.tpsReposLong = tpsReposLong ;
     }
 }

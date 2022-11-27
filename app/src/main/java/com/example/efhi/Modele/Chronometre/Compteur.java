@@ -6,25 +6,30 @@ import com.example.efhi.Activites.Declencheur;
 
 /**
  * Created by fbm on 24/10/2017.
+ * Modified for project EFHI by AL
  */
+
 public class Compteur extends DeclencheActivitesEntrainement {
 
     // Attribut de classe
     private static final int COUNT_DOWN_INTERVAL = 10 ;
 
     // Attributs
-    private long updatedTime ;
     private CountDownTimer timer ;
+    private long updatedTime ;
+    private boolean enPause ;
 
-    public Compteur (Declencheur declencheur) {
+    public Compteur (Declencheur declencheur, boolean enPause) {
         super (declencheur) ;
         updatedTime = 0 ;
+        this.enPause = enPause ;
     }
 
     // Lancer le compteur
     public void start (long duree) {
         if (timer == null) {
             updatedTime = duree ; // + COUNT_DOWN_INTERVAL ; ? // Pour voir le temps initial
+            enPause = false ;
             affichage() ;                                      // pour voir le temps initial
 
             // Création du CountDownTimer
@@ -50,17 +55,14 @@ public class Compteur extends DeclencheActivitesEntrainement {
     // Mettre en pause le compteur
     public void pause() {
         if (timer != null) {
-
-            // Arreter le timer
-            stop() ;
-
-            // Mise à jour
-            affichage() ;
+            stop() ; // arrêt du timer
+            affichage() ; // mise à jour de l'affichage
         }
     }
 
     // Arrete l'objet CountDownTimer et l'efface
     private void stop() {
+        enPause = true ;
         timer.cancel() ;
         timer = null ;
     }
@@ -68,6 +70,10 @@ public class Compteur extends DeclencheActivitesEntrainement {
     // Getters
     public long getUpdatedTime() {
         return updatedTime ;
+    }
+
+    public boolean getEnPause() {
+        return enPause ;
     }
 
     public int getMinutes() {

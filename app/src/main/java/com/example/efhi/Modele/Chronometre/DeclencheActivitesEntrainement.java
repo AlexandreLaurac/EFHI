@@ -34,7 +34,7 @@ public class DeclencheActivitesEntrainement {
     // Méthode activée par la source pour déclencher ses activités
     public void declencheActivites() {
         if (tour < durees.size()) {
-            declencheur.affichageInterface(tour) ;
+            declencheur.affichageSeance(tour) ;
             declencheur.declenche(durees.get(tour)) ;
             tour++ ;
         }

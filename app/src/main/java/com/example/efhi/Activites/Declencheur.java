@@ -16,7 +16,7 @@ public interface Declencheur {  // Au départ, une seule méthode dans cette int
 
     public void miseAJourCompteur() ;
 
-    public void affichageInterface (int tour) ;
+    public void affichageSeance (int tour) ;
 
 }
 
