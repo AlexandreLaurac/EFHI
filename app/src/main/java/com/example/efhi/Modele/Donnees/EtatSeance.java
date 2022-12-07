@@ -1,5 +1,8 @@
 package com.example.efhi.Modele.Donnees ;
 
+import com.example.efhi.Modele.BDD.Seance;
+
+
 public class EtatSeance {
 
     // Attributs
@@ -10,7 +13,7 @@ public class EtatSeance {
     private int posCycle ;
 
     // Constructeur
-    public EtatSeance (Seance seance) {  // Correspond à l'état de la préparation
+    public EtatSeance (Seance seance) {  // Initialisation de l'objet en un état de la séance qui correspond à la phase de préparation
         this.seance = seance ;
         activite = Activite.PREPARATION ;
         numSeq = 0 ;

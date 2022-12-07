@@ -5,7 +5,6 @@ import static java.sql.DriverManager.println;
 import com.example.efhi.Activites.Declencheur;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 /**
  * Classe proposant un mécanisme d'abonnement auditeur/source

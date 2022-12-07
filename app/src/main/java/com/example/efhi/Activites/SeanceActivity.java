@@ -4,16 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.efhi.Modele.BDD.DatabaseClient;
 import com.example.efhi.Modele.Chronometre.Compteur;
 import com.example.efhi.Modele.Donnees.EtatSeance;
-import com.example.efhi.Modele.Donnees.Seance;
+import com.example.efhi.Modele.BDD.Seance;
 import com.example.efhi.Modele.MonApplication;
 import com.example.efhi.R;
+
+import java.util.List;
 
 
 public class SeanceActivity extends AppCompatActivity implements Declencheur {
@@ -29,6 +33,7 @@ public class SeanceActivity extends AppCompatActivity implements Declencheur {
     private TextView vueTexteReposLong ;
     private Button boutonPause ;
         // "Donnees"
+    private DatabaseClient cbdd ;
     private Seance seance ;
     private EtatSeance etatSeance ;
     private Compteur compteur ;
@@ -47,6 +52,11 @@ public class SeanceActivity extends AppCompatActivity implements Declencheur {
         vueTexteRepos = findViewById (R.id.activity_seance_texteRepos) ;
         vueTexteReposLong = findViewById (R.id.activity_seance_texteReposLong) ;
         boutonPause = findViewById(R.id.activity_seance_boutonPause) ;
+
+        // Récupération de l'instance du Databaseclient
+        cbdd = DatabaseClient.getInstance(getApplicationContext()) ;
+
+        //lanceEntrainement() ;
 
         // Récuparation (des paramètres) de la séance
         seance = ((MonApplication) SeanceActivity.this.getApplication()).getSeance() ;
@@ -70,6 +80,7 @@ public class SeanceActivity extends AppCompatActivity implements Declencheur {
 
         // Démarrage des activités sportives
         compteur.declencheActivites() ;
+
     }
 
     public void onPauseCompteur (View view) {
@@ -178,4 +189,52 @@ public class SeanceActivity extends AppCompatActivity implements Declencheur {
         affichageEtatSeance() ;  // Affichage
     }
 
+
+
+    private void lanceEntrainement() {
+
+        // Classe asynchrone permettant de récupérer les seances et de lancer l'entrainement sportif
+        class GetSeances extends AsyncTask<Void, Void, List<Seance>> {
+
+            @Override
+            protected List<Seance> doInBackground (Void... voids) {
+                List<Seance> listeSeances = cbdd.getAppDatabase().seanceDao().getAll() ;
+                return listeSeances ;
+            }
+
+            @Override
+            protected void onPostExecute (List<Seance> seances) {
+                super.onPostExecute(seances) ;
+
+    /////////////////////// Mettre toute cette partie dans une méthode d'initialisation /////////////////////////
+
+                // Récuparation (des paramètres) de la séance
+                seance = seances.get(1) ;
+
+                // Initialisation de l'état de la séance
+                etatSeance = new EtatSeance (seance) ;
+
+                // Instanciation du compteur
+                compteur = new Compteur (SeanceActivity.this, true) ;
+
+                // Initialisation des durées -- EN FAIRE UNE METHODE A PART - une méthode ici ou une méthode de DeclencheActivitesEntrainement ? Plutôt ici car la précédente est générique et ne sais pas les temps que ses déclencheurs possèdent
+                compteur.addDuree(seance.getTpsPreparation()) ;
+                for (int i = 0 ; i<seance.getNbSequences() ; i++) {
+                    for (int j = 0 ; j<seance.getNbCycles()-1 ; j++) {  // -1 pour ne pas avoir de repos court avant un repos long (cas traité hors de la boucle après)
+                        compteur.addDuree(seance.getTpsTravail()) ;
+                        compteur.addDuree(seance.getTpsRepos()) ;
+                    }
+                    compteur.addDuree(seance.getTpsTravail()) ;
+                    compteur.addDuree(seance.getTpsReposLong());
+                }
+
+                // Démarrage des activités sportives
+                compteur.declencheActivites() ;
+            }
+        }
+
+        // Création d'un objet de type GetSeances et execution de la demande asynchrone
+        GetSeances gs = new GetSeances() ;
+        gs.execute() ;
+    }
 }

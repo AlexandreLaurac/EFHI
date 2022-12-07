@@ -28,29 +28,17 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp">
-
-        <Button
-            android:id="@+id/activity_choix_seance_menu_bouton_derniere_seance"
-            android:layout_width="305dp"
-            android:layout_height="wrap_content"
-            android:paddingTop="7dp"
-            android:paddingBottom="7dp"
-            android:layout_gravity="center"
-            android:text="Dernière séance"
-            android:textSize="20sp"
-            android:onClick="clicBoutonDerniereSeance"/>
+        android:layout_marginTop="40dp"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/activity_choix_seance_menu_bouton_seances_enregistrees"
             android:layout_width="305dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:paddingTop="7dp"
             android:paddingBottom="7dp"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center"
             android:text="Séances enregistrées"
             android:textSize="20sp"
             android:onClick="clicBoutonSeancesEnregistrees"/>
@@ -59,10 +47,10 @@
             android:id="@+id/activity_choix_seance_menu_bouton_presets"
             android:layout_width="305dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:paddingTop="7dp"
             android:paddingBottom="7dp"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center"
             android:text="Séances préétablies"
             android:textSize="20sp"
             android:onClick="clicBoutonPresets"/>
@@ -73,13 +61,24 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:onClick="clicBoutonDefinirSeance"
             android:paddingTop="7dp"
             android:paddingBottom="7dp"
             android:text="Définition de séance"
             android:textSize="20sp"
+            android:onClick="clicBoutonDefinirSeance"
             tools:ignore="TextContrastCheck" />
 
+        <Button
+            android:id="@+id/activity_choix_seance_menu_bouton_derniere_seance"
+            android:layout_width="305dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:text="Dernière séance"
+            android:textSize="20sp"
+            android:onClick="clicBoutonDerniereSeance"/>
 
     </LinearLayout>
 
