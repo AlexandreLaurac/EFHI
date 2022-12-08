@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 
 public class ChoixSeanceDefinitionActivity extends AppCompatActivity {
 
-    private static Logger LOGGER = Logger.getAnonymousLogger() ;
+    private static final Logger LOGGER = Logger.getAnonymousLogger() ;
     static {
         System.setProperty("java.util.logging.SimpleFormatter.format", "[%1$s] %4$-10s | (%3$s) %2$-15s | %5$s\n") ;
         LOGGER.setLevel(Level.INFO) ;
@@ -48,7 +48,7 @@ public class ChoixSeanceDefinitionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState) ;
         setContentView (R.layout.activity_choix_seance_definition) ;
 
-        // Récupération de l'instance du Databaseclient
+        // Récupération de l'instance de Databaseclient
         cbdd = DatabaseClient.getInstance(getApplicationContext()) ;
 
         // Récupération des EditText, et insertion dans la liste qui les regroupe (sauf le dernier)
@@ -86,7 +86,6 @@ public class ChoixSeanceDefinitionActivity extends AppCompatActivity {
 
         // Récupération des données
         seanceBDD = recupererDonnees ("avant d'enregistrer la séance") ;
-
 
         // Classe asynchrone permettant d'écrire dans la BDD la dernière séance (enregistrement de catégorie 'last') et de poursuivre l'application
         class SetLast extends AsyncTask<Void, Void, Seance> {
@@ -147,5 +146,4 @@ public class ChoixSeanceDefinitionActivity extends AppCompatActivity {
         }
         return i == listeEditText.size() ;
     }
-
 }

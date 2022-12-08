@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class SeanceConclusionActivity extends AppCompatActivity {
 
     // Attribut statique (LOGGER)
-    private static Logger LOGGER = Logger.getAnonymousLogger() ;
+    private static final Logger LOGGER = Logger.getAnonymousLogger() ;
     static {
         System.setProperty("java.util.logging.SimpleFormatter.format", "[%1$s] %4$-10s | (%3$s) %2$-15s | %5$s\n") ;
         LOGGER.setLevel(Level.INFO) ;
@@ -70,6 +70,11 @@ public class SeanceConclusionActivity extends AppCompatActivity {
                 }
                 else {
                     seance.setCategorie("last");
+                    long maxId = cbdd.getAppDatabase().seanceDao().getMaxId() ;
+                    seance.setId(maxId+1) ;  // Au cas où une dernière séance ne serait pas en base et qu'on aurait choisi une séance existante,
+                                             // l'instruction suivante cherchera à insérer en base un enregistrement d'id existant, ce qui provoquera
+                                             // une violation de contrainte d'unicité. Pour l'éviter, on fixe donc l'id à la valeur la plus élevée + 1
+                                             // (mais ce n'est vraiment valable que pour les premières utilisations de l'application)
                     cbdd.getAppDatabase().seanceDao().insert(seance) ;
                 }
 

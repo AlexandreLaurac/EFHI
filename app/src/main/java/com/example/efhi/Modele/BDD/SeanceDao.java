@@ -23,6 +23,9 @@ public interface SeanceDao {
     @Query("SELECT COUNT(*) FROM seance")
     long getNbOfElements() ;
 
+    @Query("SELECT MAX(id) FROM seance")
+    long getMaxId() ;
+
     @Insert
     long insert(Seance seance) ;
 
