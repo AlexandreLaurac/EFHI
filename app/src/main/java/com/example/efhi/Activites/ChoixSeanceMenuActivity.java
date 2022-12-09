@@ -3,6 +3,7 @@ package com.example.efhi.Activites;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -30,8 +31,8 @@ public class ChoixSeanceMenuActivity extends AppCompatActivity {
     // Attributs
     private DatabaseClient cbdd ;
     private Seance derniereSeance ;
+    private boolean existDerniereSeance ;
     private boolean existSeancesEnregistrees ;
-
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class ChoixSeanceMenuActivity extends AppCompatActivity {
         setContentView (R.layout.activity_choix_seance_menu) ;
 
         // Existence de séances enregistrées ou non
+        existDerniereSeance = false ;
         existSeancesEnregistrees = false ;
 
         // Récupération de l'instance du Databaseclient
@@ -74,18 +76,19 @@ public class ChoixSeanceMenuActivity extends AppCompatActivity {
 
                 // Post traitements concernant la dernière séance
                 if (existSeancesEnregistrees) {
-                    findViewById(R.id.activity_choix_seance_menu_bouton_seances_enregistrees).setVisibility(View.VISIBLE) ;
+                    findViewById(R.id.activity_choix_seance_menu_bouton_seances_enregistrees).setBackgroundColor(Color.GRAY) ;
                 }
 
                 // Post traitements concernant la dernière séance
-                if (lasts.size() == 0) { // Il n'y a pas d'enregistrement dont la catégorie est 'last' dans la BDD
-                    ((MonApplication) ChoixSeanceMenuActivity.this.getApplication()).setLastExists(false) ;
+                /*if (lasts.size() == 0) { // Il n'y a pas d'enregistrement dont la catégorie est 'last' dans la BDD
                 }
-                else {
-                    ((MonApplication) ChoixSeanceMenuActivity.this.getApplication()).setLastExists(true) ;
-                    findViewById(R.id.activity_choix_seance_menu_bouton_derniere_seance).setVisibility(View.VISIBLE) ;
+                else {*/
+                if (lasts.size() > 0) {
+                    existDerniereSeance = true ;
+                    findViewById(R.id.activity_choix_seance_menu_bouton_derniere_seance).setBackgroundColor(Color.GRAY) ;
                     derniereSeance = lasts.get(0) ;
                 }
+                ((MonApplication) ChoixSeanceMenuActivity.this.getApplication()).setLastExists(existDerniereSeance) ;
             }
         }
 
@@ -102,23 +105,43 @@ public class ChoixSeanceMenuActivity extends AppCompatActivity {
 
     public void clicBoutonPresets (View view) {
         String categorie = "preset" ;
-        lanceSeanceEnBaseActivity (categorie) ;
+        lanceChoixSeanceEnBaseActivity (categorie) ;
     }
 
     public void clicBoutonSeancesEnregistrees (View view) {
-        String categorie = "utilisateur" ;
-        lanceSeanceEnBaseActivity (categorie) ;
+        if (!existSeancesEnregistrees) {
+            Intent intention = new Intent (this, ChoixSeanceNonDisponibleActivity.class) ;
+            String titre = "Il n'y a aucune séance enregistrée dans l'application" ;
+            String description = "Pour en enregistrer une, allez dans \"Définition de séance\" et cliquez sur \"ENREGISTRER\" après avoir défini une séance" ;
+            intention.putExtra(ChoixSeanceNonDisponibleActivity.TITRE, titre) ;
+            intention.putExtra(ChoixSeanceNonDisponibleActivity.EXPLICATION, description) ;
+            startActivity (intention) ;
+        }
+        else {
+            String categorie = "utilisateur" ;
+            lanceChoixSeanceEnBaseActivity (categorie) ;
+        }
     }
 
-    public void lanceSeanceEnBaseActivity (String categorie) {
+    public void lanceChoixSeanceEnBaseActivity (String categorie) {
         Intent intention = new Intent (ChoixSeanceMenuActivity.this, ChoixSeanceEnBaseActivity.class) ;
         intention.putExtra(ChoixSeanceEnBaseActivity.CATEGORIE_SEANCES, categorie) ;
         startActivity (intention) ;
     }
 
     public void clicBoutonDerniereSeance (View view) {
-        ((MonApplication) this.getApplication()).setSeance(derniereSeance) ;
-        Intent intention = new Intent (ChoixSeanceMenuActivity.this, ChoixSeanceAffichageActivity.class) ;
-        startActivity (intention) ;
+        if (!existDerniereSeance) {
+            Intent intention = new Intent (this, ChoixSeanceNonDisponibleActivity.class) ;
+            String titre = "Il n'y a pas de séance précédente" ;
+            String description = "Pour cela, il faut réaliser au moins une séance" ;
+            intention.putExtra(ChoixSeanceNonDisponibleActivity.TITRE, titre) ;
+            intention.putExtra(ChoixSeanceNonDisponibleActivity.EXPLICATION, description) ;
+            startActivity (intention) ;
+        }
+        else {
+            ((MonApplication) this.getApplication()).setSeance(derniereSeance) ;
+            Intent intention = new Intent(ChoixSeanceMenuActivity.this, ChoixSeanceAffichageActivity.class) ;
+            startActivity(intention) ;
+        }
     }
 }

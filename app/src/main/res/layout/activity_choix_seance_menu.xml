@@ -66,7 +66,7 @@
             android:text="Séances enregistrées"
             android:textSize="20sp"
             android:onClick="clicBoutonSeancesEnregistrees"
-            android:visibility="gone"/>
+            android:background="@color/white"/>
 
         <Button
             android:id="@+id/activity_choix_seance_menu_bouton_derniere_seance"
@@ -79,7 +79,7 @@
             android:text="Dernière séance"
             android:textSize="20sp"
             android:onClick="clicBoutonDerniereSeance"
-            android:visibility="gone"/>
+            android:background="@color/white"/>
 
     </LinearLayout>
 
