@@ -125,7 +125,8 @@ public class ChoixSeanceDefinitionActivity extends AppCompatActivity {
             return null ;
         }
 
-        // 2. Récupération du contenu des différents EditText  -- A FAIRE : VERIFICATION DES DONNEES !!! OU ALORS AFFICHER UN CLAVIER QUI NE PROPOSE QUE DES NOMBRES
+        // 2. Récupération du contenu des différents EditText
+        // Pas de vérification des données à effectuer, les editText sont de type "number", il faut juste convertir leur contenu en entier
         int tpsPreparation = parseInt (preparation.getText().toString()) ;
         int nbSequences = parseInt (sequences.getText().toString()) ;
         int nbCycles = parseInt (cycles.getText().toString()) ;

@@ -55,6 +55,7 @@
                     android:textSize="18sp"/>
 
                 <EditText
+                    android:inputType="number"
                     android:id="@+id/activity_choix_seance_definition_tpsPreparation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -85,6 +86,7 @@
                     android:textSize="18sp"/>
 
                 <EditText
+                    android:inputType="number"
                     android:id="@+id/activity_choix_seance_definition_nbSequences"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -109,6 +111,7 @@
                     android:textSize="18sp"/>
 
                 <EditText
+                    android:inputType="number"
                     android:id="@+id/activity_choix_seance_definition_nbCycles"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -133,6 +136,7 @@
                     android:textSize="18sp"/>
 
                 <EditText
+                    android:inputType="number"
                     android:id="@+id/activity_choix_seance_definition_tpsTravail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -163,6 +167,7 @@
                     android:textSize="18sp"/>
 
                 <EditText
+                    android:inputType="number"
                     android:id="@+id/activity_choix_seance_definition_tpsRepos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -193,6 +198,7 @@
                     android:textSize="18sp"/>
 
                 <EditText
+                    android:inputType="number"
                     android:id="@+id/activity_choix_seance_definition_tpsReposLong"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
