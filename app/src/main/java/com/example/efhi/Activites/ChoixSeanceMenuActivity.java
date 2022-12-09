@@ -29,53 +29,62 @@ public class ChoixSeanceMenuActivity extends AppCompatActivity {
 
     // Attributs
     private DatabaseClient cbdd ;
-    private Button boutonDerniereSeance ;
     private Seance derniereSeance ;
+    private boolean existSeancesEnregistrees ;
+
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState) ;
         setContentView (R.layout.activity_choix_seance_menu) ;
 
-        // Récupération du bouton "dernière séance"
-        boutonDerniereSeance = findViewById (R.id.activity_choix_seance_menu_bouton_derniere_seance) ;
+        // Existence de séances enregistrées ou non
+        existSeancesEnregistrees = false ;
 
         // Récupération de l'instance du Databaseclient
         cbdd = DatabaseClient.getInstance(getApplicationContext()) ;
 
         // Vérification de l'existence d'un enregistrement de la précédente séance
-        verifLastExists() ;
+        verifExistenceSeances() ;
     }
 
 
-    private void verifLastExists() {
+    private void verifExistenceSeances() {
 
-        // Classe asynchrone permettant de récupérer la dernière séance, si elle existe, et d'afficher le bouton de l'activité associée
+        // Classe asynchrone permettant de récupérer les séances enregistrées par l'utilisateur et la dernière séance, si elles existent, et d'afficher le bouton des activités associées
         class GetLast extends AsyncTask<Void, Void, List<Seance>> {
 
             @Override
             protected List<Seance> doInBackground (Void... voids) {
+
+                // Séances enregistrées par l'utilisateur
+                List<Seance> seancesEnregistrees = cbdd.getAppDatabase().seanceDao().getCategorie("utilisateur") ;
+                if (seancesEnregistrees.size() > 0) {
+                    existSeancesEnregistrees = true ;
+                }
+
+                // Dernière séance
                 List<Seance> lasts = cbdd.getAppDatabase().seanceDao().getCategorie("last") ;
-
-                //long nbOfElements = cbdd.getAppDatabase().seanceDao().getNbOfElements() ;
-                //LOGGER.log(Level.INFO, "ChoixSeanceMenuActivity, nombre d'éléments : " + nbOfElements) ;
-
                 return lasts ;
             }
 
             @Override
-            protected void onPostExecute(List<Seance> lasts) {
+            protected void onPostExecute (List<Seance> lasts) {
                 super.onPostExecute(lasts) ;
 
+                // Post traitements concernant la dernière séance
+                if (existSeancesEnregistrees) {
+                    findViewById(R.id.activity_choix_seance_menu_bouton_seances_enregistrees).setVisibility(View.VISIBLE) ;
+                }
+
+                // Post traitements concernant la dernière séance
                 if (lasts.size() == 0) { // Il n'y a pas d'enregistrement dont la catégorie est 'last' dans la BDD
                     ((MonApplication) ChoixSeanceMenuActivity.this.getApplication()).setLastExists(false) ;
-                    boutonDerniereSeance.setVisibility(View.INVISIBLE) ;  // On cache le bouton permettant d'accéder à l'activité affichant les paramètres de la dernière séance
                 }
                 else {
                     ((MonApplication) ChoixSeanceMenuActivity.this.getApplication()).setLastExists(true) ;
-                    boutonDerniereSeance.setVisibility(View.VISIBLE) ;
+                    findViewById(R.id.activity_choix_seance_menu_bouton_derniere_seance).setVisibility(View.VISIBLE) ;
                     derniereSeance = lasts.get(0) ;
-                    // LOGGER.log(Level.INFO, "Id de la séance récupérée : " + derniereSeance.getId()) ;
                 }
             }
         }
@@ -86,8 +95,8 @@ public class ChoixSeanceMenuActivity extends AppCompatActivity {
     }
 
 
-    public void clicBoutonSeancesEnregistrees (View view) {
-        Intent intention = new Intent (ChoixSeanceMenuActivity.this, ChoixSeanceEnregistreesActivity.class) ;
+    public void clicBoutonDefinirSeance (View view) {
+        Intent intention = new Intent (ChoixSeanceMenuActivity.this, ChoixSeanceDefinitionActivity.class) ;
         startActivity (intention) ;
     }
 
@@ -96,8 +105,8 @@ public class ChoixSeanceMenuActivity extends AppCompatActivity {
         startActivity (intention) ;
     }
 
-    public void clicBoutonDefinirSeance (View view) {
-        Intent intention = new Intent (ChoixSeanceMenuActivity.this, ChoixSeanceDefinitionActivity.class) ;
+    public void clicBoutonSeancesEnregistrees (View view) {
+        Intent intention = new Intent (ChoixSeanceMenuActivity.this, ChoixSeanceEnregistreesActivity.class) ;
         startActivity (intention) ;
     }
 

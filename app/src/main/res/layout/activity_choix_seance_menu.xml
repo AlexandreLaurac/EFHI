@@ -20,8 +20,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         android:layout_gravity="center"
+        android:layout_marginTop="50dp"
         android:text="Faites un choix"
         android:textSize="25sp"/>
 
@@ -33,15 +33,15 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/activity_choix_seance_menu_bouton_seances_enregistrees"
+            android:id="@+id/activity_choix_seance_menu_bouton_definition"
             android:layout_width="305dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:paddingTop="7dp"
             android:paddingBottom="7dp"
-            android:text="Séances enregistrées"
+            android:text="Définition de séance"
             android:textSize="20sp"
-            android:onClick="clicBoutonSeancesEnregistrees"/>
+            android:onClick="clicBoutonDefinirSeance" />
 
         <Button
             android:id="@+id/activity_choix_seance_menu_bouton_presets"
@@ -56,17 +56,17 @@
             android:onClick="clicBoutonPresets"/>
 
         <Button
-            android:id="@+id/activity_choix_seance_menu_bouton_definition"
+            android:id="@+id/activity_choix_seance_menu_bouton_seances_enregistrees"
             android:layout_width="305dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:paddingTop="7dp"
             android:paddingBottom="7dp"
-            android:text="Définition de séance"
+            android:text="Séances enregistrées"
             android:textSize="20sp"
-            android:onClick="clicBoutonDefinirSeance"
-            tools:ignore="TextContrastCheck" />
+            android:onClick="clicBoutonSeancesEnregistrees"
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/activity_choix_seance_menu_bouton_derniere_seance"
@@ -78,7 +78,8 @@
             android:paddingBottom="7dp"
             android:text="Dernière séance"
             android:textSize="20sp"
-            android:onClick="clicBoutonDerniereSeance"/>
+            android:onClick="clicBoutonDerniereSeance"
+            android:visibility="gone"/>
 
     </LinearLayout>
 
