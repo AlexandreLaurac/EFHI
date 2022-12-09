@@ -10,11 +10,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 
-public class ChoixSeanceDerniereSeanceActivity extends AppCompatActivity {
+public class ChoixSeanceAffichageActivity extends AppCompatActivity {
 
     // Attributs
+    private TextView vueTexteTitre ;
     private TextView vueTextePreparation ;
     private TextView vueTexteSequences ;
     private TextView vueTexteCycles ;
@@ -26,20 +26,23 @@ public class ChoixSeanceDerniereSeanceActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState) ;
-        setContentView(R.layout.activity_choix_seance_derniere_seance) ;
+        setContentView(R.layout.activity_choix_seance_affichage) ;
 
         // Récuparation (des paramètres) de la (dernière) séance
         seance = ((MonApplication) this.getApplication()).getSeance() ;
 
         // Récupération des TextView
-        vueTextePreparation = findViewById (R.id.activity_choix_seance_derniere_seance_tpsPreparation) ;
-        vueTexteSequences = findViewById (R.id.activity_choix_seance_derniere_seance_nbSequences) ;
-        vueTexteCycles = findViewById (R.id.activity_choix_seance_derniere_seance_nbCycles) ;
-        vueTexteTravail = findViewById (R.id.activity_choix_seance_derniere_seance_tpsTravail) ;
-        vueTexteRepos = findViewById (R.id.activity_choix_seance_derniere_seance_tpsRepos) ;
-        vueTexteReposLong = findViewById (R.id.activity_choix_seance_derniere_seance_tpsReposLong) ;
+        vueTexteTitre = findViewById (R.id.activity_choix_seance_affichage_titre) ;
+        vueTextePreparation = findViewById (R.id.activity_choix_seance_affichage_tpsPreparation) ;
+        vueTexteSequences = findViewById (R.id.activity_choix_seance_affichage_nbSequences) ;
+        vueTexteCycles = findViewById (R.id.activity_choix_seance_affichage_nbCycles) ;
+        vueTexteTravail = findViewById (R.id.activity_choix_seance_affichage_tpsTravail) ;
+        vueTexteRepos = findViewById (R.id.activity_choix_seance_affichage_tpsRepos) ;
+        vueTexteReposLong = findViewById (R.id.activity_choix_seance_affichage_tpsReposLong) ;
 
         // Mise à jour du texte des vues Texte en fonction des valeurs de 'seance'
+        String titre = seance.getTitre().isEmpty() ? "Seance" : seance.getTitre() ;
+        vueTexteTitre.setText(titre) ;
         String textePreparation = "" + seance.getTpsPreparation() ;
         vueTextePreparation.setText(textePreparation) ;
         String texteSequences = "" + seance.getNbSequences() ;
@@ -56,7 +59,7 @@ public class ChoixSeanceDerniereSeanceActivity extends AppCompatActivity {
 
 
     public void clicBoutonValider (View view) {
-        Intent intention = new Intent (ChoixSeanceDerniereSeanceActivity.this, SeanceIntroductionActivity.class) ;
+        Intent intention = new Intent (ChoixSeanceAffichageActivity.this, SeanceIntroductionActivity.class) ;
         startActivity (intention) ;
     }
 

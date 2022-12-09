@@ -50,9 +50,8 @@ public class SeanceViewHolder extends RecyclerView.ViewHolder implements View.On
 
     @Override
     public void onClick (View view) {
-        LOGGER.log(Level.INFO, "onClick - SeanceViewHolder") ;
         ((MonApplication) activite.getApplication()).setSeance(seance) ;
-        Intent intention = new Intent (activite, ChoixSeanceDerniereSeanceActivity.class) ;
+        Intent intention = new Intent (activite, ChoixSeanceAffichageActivity.class) ;
         activite.startActivity(intention) ;
     }
 }

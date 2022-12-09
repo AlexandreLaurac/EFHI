@@ -51,7 +51,7 @@
             android:layout_marginTop="10dp"
             android:paddingTop="7dp"
             android:paddingBottom="7dp"
-            android:text="Séances préétablies"
+            android:text="Séances prédéfinies"
             android:textSize="20sp"
             android:onClick="clicBoutonPresets"/>
 

@@ -57,24 +57,28 @@ public class SeanceConclusionActivity extends AppCompatActivity {
                 boolean lastExists = ((MonApplication) SeanceConclusionActivity.this.getApplication()).getLastExists() ;
                 Seance seance = ((MonApplication) SeanceConclusionActivity.this.getApplication()).getSeance() ;
 
+                // Modification du titre et de la catégorie
+                seance.setTitre("Dernière séance") ;
+                seance.setCategorie("last") ;
+
                 // Ecriture dans la base (update ou insert selon que 'last' existe déjà ou non)
                 if (lastExists) {
                     // Récupération de la dernière séance
                     List<Seance> lasts = cbdd.getAppDatabase().seanceDao().getCategorie("last") ;
                     Seance last = lasts.get(0) ;
-                    // Settings des attributs de la séance courante
+                    // Modification de l'id
                     seance.setId(last.getId()) ;
-                    seance.setCategorie("last") ;
                     // Mise à jour de l'enregistrement avec la séance courante
                     cbdd.getAppDatabase().seanceDao().update(seance) ;
                 }
                 else {
-                    seance.setCategorie("last");
+                    // Attribution d'un id
                     long maxId = cbdd.getAppDatabase().seanceDao().getMaxId() ;
                     seance.setId(maxId+1) ;  // Au cas où une dernière séance ne serait pas en base et qu'on aurait choisi une séance existante,
                                              // l'instruction suivante cherchera à insérer en base un enregistrement d'id existant, ce qui provoquera
                                              // une violation de contrainte d'unicité. Pour l'éviter, on fixe donc l'id à la valeur la plus élevée + 1
                                              // (mais ce n'est vraiment valable que pour les premières utilisations de l'application)
+                    // Insertion dans la base
                     cbdd.getAppDatabase().seanceDao().insert(seance) ;
                 }
 

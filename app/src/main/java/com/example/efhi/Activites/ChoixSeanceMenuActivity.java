@@ -101,18 +101,24 @@ public class ChoixSeanceMenuActivity extends AppCompatActivity {
     }
 
     public void clicBoutonPresets (View view) {
-        Intent intention = new Intent (ChoixSeanceMenuActivity.this, ChoixSeancePresetsActivity.class) ;
-        startActivity (intention) ;
+        String categorie = "preset" ;
+        lanceSeanceEnBaseActivity (categorie) ;
     }
 
     public void clicBoutonSeancesEnregistrees (View view) {
-        Intent intention = new Intent (ChoixSeanceMenuActivity.this, ChoixSeanceEnregistreesActivity.class) ;
+        String categorie = "utilisateur" ;
+        lanceSeanceEnBaseActivity (categorie) ;
+    }
+
+    public void lanceSeanceEnBaseActivity (String categorie) {
+        Intent intention = new Intent (ChoixSeanceMenuActivity.this, ChoixSeanceEnBaseActivity.class) ;
+        intention.putExtra(ChoixSeanceEnBaseActivity.CATEGORIE_SEANCES, categorie) ;
         startActivity (intention) ;
     }
 
     public void clicBoutonDerniereSeance (View view) {
         ((MonApplication) this.getApplication()).setSeance(derniereSeance) ;
-        Intent intention = new Intent (ChoixSeanceMenuActivity.this, ChoixSeanceDerniereSeanceActivity.class) ;
+        Intent intention = new Intent (ChoixSeanceMenuActivity.this, ChoixSeanceAffichageActivity.class) ;
         startActivity (intention) ;
     }
 }

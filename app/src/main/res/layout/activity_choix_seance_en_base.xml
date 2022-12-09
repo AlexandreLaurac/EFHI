@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activites.ChoixSeanceEnregistreesActivity">
+    tools:context=".Activites.ChoixSeanceEnBaseActivity">
 
     <TextView
-        android:id="@+id/activity_choix_seance_enregistrees_vueTexte"
+        android:id="@+id/activity_choix_seance_en_base_titre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -16,7 +16,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:text="Séances préenregistrées"
+        android:text="titre"
         android:textSize="30sp"/>
 
     <TextView
@@ -29,7 +29,7 @@
         android:textSize="15sp"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/activity_choix_seance_enregistrees_listeSeances"
+        android:id="@+id/activity_choix_seance_en_base_listeSeances"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
