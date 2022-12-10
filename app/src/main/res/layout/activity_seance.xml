@@ -17,104 +17,117 @@
         android:text="Séance"
         android:textSize="50sp"/>
 
-    <!-- Panneau de situation dans la séance -->
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:orientation="vertical">
+        android:scrollbars="vertical">
 
-        <!-- Préparation -->
-        <TextView
-            android:id="@+id/activity_seance_textePreparation"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="40dp"
-            android:text="Préparation : Xs"
-            android:textSize="20sp" />
+            android:orientation="vertical">
 
-        <!-- Séquences -->
-        <TextView
-            android:id="@+id/activity_seance_texteSequence"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="40dp"
-            android:text="Séquence"
-            android:textSize="20sp"/>
+        <!-- Panneau de situation dans la séance -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
 
-        <!-- Cycles -->
-        <TextView
-            android:id="@+id/activity_seance_texteCycle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="80dp"
-            android:text="Cycle"
-            android:textSize="20sp"/>
+                <!-- Préparation -->
+                <TextView
+                    android:id="@+id/activity_seance_textePreparation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="40dp"
+                    android:text="Préparation : Xs"
+                    android:textSize="20sp" />
 
-        <!-- Travail -->
-        <TextView
-            android:id="@+id/activity_seance_texteTravail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="120dp"
-            android:text="Travail : X s"
-            android:textSize="20sp"/>
+                <!-- Séquences -->
+                <TextView
+                    android:id="@+id/activity_seance_texteSequence"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="40dp"
+                    android:text="Séquence"
+                    android:textSize="20sp"/>
 
-        <!-- Repos -->
-        <TextView
-            android:id="@+id/activity_seance_texteRepos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="120dp"
-            android:text="Repos : Y s"
-            android:textSize="20sp"/>
+                <!-- Cycles -->
+                <TextView
+                    android:id="@+id/activity_seance_texteCycle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="80dp"
+                    android:text="Cycle"
+                    android:textSize="20sp"/>
 
-        <!-- Repos long -->
-        <TextView
-            android:id="@+id/activity_seance_texteReposLong"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="80dp"
-            android:text="Repos long : Z s"
-            android:textSize="20sp"/>
+                <!-- Travail -->
+                <TextView
+                    android:id="@+id/activity_seance_texteTravail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="120dp"
+                    android:text="Travail : X s"
+                    android:textSize="20sp"/>
 
-    </LinearLayout>
+                <!-- Repos -->
+                <TextView
+                    android:id="@+id/activity_seance_texteRepos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="120dp"
+                    android:text="Repos : Y s"
+                    android:textSize="20sp"/>
 
-    <TextView
-        android:id="@+id/activity_seance_Compteur"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:textSize="50sp"
-        android:text="00:00:00" />
+                <!-- Repos long -->
+                <TextView
+                    android:id="@+id/activity_seance_texteReposLong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="80dp"
+                    android:text="Repos long : Z s"
+                    android:textSize="20sp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/activity_seance_Compteur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:textSize="50sp"
+                android:text="00:00:00" />
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/activity_seance_boutonPause"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:paddingLeft="25dp"
-            android:paddingRight="25dp"
-            android:text="pause"
-            android:textSize="20sp"
-            android:onClick="onPauseCompteur"/>
+                <Button
+                    android:id="@+id/activity_seance_boutonPause"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="25dp"
+                    android:paddingRight="25dp"
+                    android:text="pause"
+                    android:textSize="20sp"
+                    android:onClick="onPauseCompteur"/>
 
-    </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>

@@ -53,7 +53,7 @@ public class EtatSeance {
         }
     }
 
-    // Méthodes
+    // Méthodes d'état
     public boolean estEnPreparation() {
         return activite == Activite.PREPARATION ;
     }

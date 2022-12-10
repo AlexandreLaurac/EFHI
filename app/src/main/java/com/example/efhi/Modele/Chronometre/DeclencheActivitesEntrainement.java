@@ -1,7 +1,5 @@
 package com.example.efhi.Modele.Chronometre;
 
-import static java.sql.DriverManager.println;
-
 import com.example.efhi.Activites.Declencheur;
 
 import java.util.ArrayList;
@@ -14,7 +12,7 @@ import java.util.ArrayList;
 public class DeclencheActivitesEntrainement {
 
     // Attributs
-    private int tour ;
+    protected int tour ;
     private Declencheur declencheur ;
     private ArrayList<Integer> durees ;
 
@@ -25,6 +23,16 @@ public class DeclencheActivitesEntrainement {
         durees = new ArrayList<>() ;
     }
 
+    // Getter
+    public int getTour() {
+        return tour ;
+    }
+
+    // Setter
+    public void setTour (int tour) {
+        this.tour = tour ;
+    }
+
     // Ajout des durées d'entrainement à la liste des durées
     public void addDuree (int duree) {
         durees.add(duree) ;
@@ -32,10 +40,9 @@ public class DeclencheActivitesEntrainement {
 
     // Méthode activée par la source pour déclencher ses activités
     public void declencheActivites() {
-        if (tour < durees.size()) {
+        if (tour < durees.size()) {  // tour est mis à jour à la fin d'un décompte du compteur, et le compteur est déclenché par l'appel declencheur.declenche(durees.get(tour))
             declencheur.affichageSeance(tour) ;
             declencheur.declenche(durees.get(tour)) ;
-            tour++ ;
         }
         else {
             declencheur.termine() ;

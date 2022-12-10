@@ -18,9 +18,19 @@ import com.example.efhi.Modele.MonApplication;
 import com.example.efhi.R;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class SeanceActivity extends AppCompatActivity implements Declencheur {
+
+    // Attributs statiques
+    public static final String TOUR = "tour" ;
+    public static final String EN_PAUSE = "pause" ;
+    public static final String UPDATED_TIME = "update" ;
+    private static final Logger LOGGER = Logger.getAnonymousLogger() ;
+    static { System.setProperty("java.util.logging.SimpleFormatter.format", "[%1$s] %4$-10s | (%3$s) %2$-15s | %5$s\n") ; LOGGER.setLevel(Level.INFO) ; }
+
 
     // Attributs
         // Vues
@@ -33,7 +43,6 @@ public class SeanceActivity extends AppCompatActivity implements Declencheur {
     private TextView vueTexteReposLong ;
     private Button boutonPause ;
         // "Donnees"
-    private DatabaseClient cbdd ;
     private Seance seance ;
     private EtatSeance etatSeance ;
     private Compteur compteur ;
@@ -43,20 +52,8 @@ public class SeanceActivity extends AppCompatActivity implements Declencheur {
         super.onCreate(savedInstanceState) ;
 
         // Récupération des vues
-        setContentView(R.layout.activity_seance) ;
-        vueCompteur = findViewById(R.id.activity_seance_Compteur) ;
-        vueTextePreparation = findViewById (R.id.activity_seance_textePreparation) ;
-        vueTexteSequence = findViewById (R.id.activity_seance_texteSequence) ;
-        vueTexteCycle = findViewById (R.id.activity_seance_texteCycle) ;
-        vueTexteTravail = findViewById (R.id.activity_seance_texteTravail) ;
-        vueTexteRepos = findViewById (R.id.activity_seance_texteRepos) ;
-        vueTexteReposLong = findViewById (R.id.activity_seance_texteReposLong) ;
-        boutonPause = findViewById(R.id.activity_seance_boutonPause) ;
-
-        // Récupération de l'instance du Databaseclient
-        cbdd = DatabaseClient.getInstance(getApplicationContext()) ;
-
-        //lanceEntrainement() ;
+        setContentView (R.layout.activity_seance) ;
+        recuperationDesVues() ;
 
         // Récuparation (des paramètres) de la séance
         seance = ((MonApplication) SeanceActivity.this.getApplication()).getSeance() ;
@@ -67,7 +64,25 @@ public class SeanceActivity extends AppCompatActivity implements Declencheur {
         // Instanciation du compteur
         compteur = new Compteur (this, true) ;
 
-        // Initialisation des durées -- EN FAIRE UNE METHODE A PART - une méthode ici ou une méthode de DeclencheActivitesEntrainement ? Plutôt ici car la précédente est générique et ne sais pas les temps que ses déclencheurs possèdent
+        // Initialisation des durées
+        initialisationDesDurees() ;
+
+        // Lancement des activités en fonction du savedInstanceState
+        lancementActivitesSportives (savedInstanceState) ;
+    }
+
+    private void recuperationDesVues() {
+        vueCompteur = findViewById (R.id.activity_seance_Compteur) ;
+        vueTextePreparation = findViewById (R.id.activity_seance_textePreparation) ;
+        vueTexteSequence = findViewById (R.id.activity_seance_texteSequence) ;
+        vueTexteCycle = findViewById (R.id.activity_seance_texteCycle) ;
+        vueTexteTravail = findViewById (R.id.activity_seance_texteTravail) ;
+        vueTexteRepos = findViewById (R.id.activity_seance_texteRepos) ;
+        vueTexteReposLong = findViewById (R.id.activity_seance_texteReposLong) ;
+        boutonPause = findViewById (R.id.activity_seance_boutonPause) ;
+    }
+
+    private void initialisationDesDurees() {
         compteur.addDuree(seance.getTpsPreparation()) ;
         for (int i = 0 ; i<seance.getNbSequences() ; i++) {
             for (int j = 0 ; j<seance.getNbCycles()-1 ; j++) {  // -1 pour ne pas avoir de repos court avant un repos long (cas traité hors de la boucle après)
@@ -75,13 +90,53 @@ public class SeanceActivity extends AppCompatActivity implements Declencheur {
                 compteur.addDuree(seance.getTpsRepos()) ;
             }
             compteur.addDuree(seance.getTpsTravail()) ;
-            compteur.addDuree(seance.getTpsReposLong());
+            compteur.addDuree(seance.getTpsReposLong()) ;
+        }
+    }
+
+    public void lancementActivitesSportives (Bundle savedInstanceState) {
+
+        // Un état a été sauvegardé, on met à jour l'état de la séance et le compteur en fonction de cet état précédent
+        if (savedInstanceState != null) {
+
+            // Actions à mener concernant l'état de la séance
+            compteur.setTour(savedInstanceState.getInt(TOUR)) ;
+            affichageSeance(compteur.getTour()) ;  // met à jour l'attribut etatSeance et l'affiche
+
+            // Actions à mener concernant le compteur
+            compteur.setUpdatedTime(savedInstanceState.getLong(UPDATED_TIME)) ;
+            compteur.setEnPause(savedInstanceState.getBoolean(EN_PAUSE)) ;
+            if (compteur.getEnPause()) {  // le chronomètre était en pause
+                compteur.setEnPause(false) ; // on fait passer artificiellement le compteur à l'état en marche pour appeler onPauseCOmpteur et qu'elle effectue la bonne opération
+                onPauseCompteur (boutonPause) ;
+            }
+            else {  // le chronomètre tournait, on le fait reprendre là où il en était
+                compteur.start(compteur.getUpdatedTime()) ;
+            }
+        }
+        // Aucun état n'a été sauvegardé - on commence l'activité
+        else {
+            compteur.declencheActivites() ;
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState (Bundle savedInstanceState) {
+
+        // Sauvegarde des attributs de compteur suffisant pour régénérer l'interface
+        savedInstanceState.putInt(TOUR, compteur.getTour()) ;
+        savedInstanceState.putBoolean(EN_PAUSE, compteur.getEnPause()) ;
+        savedInstanceState.putLong(UPDATED_TIME, compteur.getUpdatedTime()) ;
+
+        // On met le compteur en pause s'il ne l'est pas, pour éviter la poursuite des décomptes de l'instance de compteur de cette activité
+        if (!compteur.getEnPause()) {
+            compteur.pause() ;
         }
 
-        // Démarrage des activités sportives
-        compteur.declencheActivites() ;
-
+        // "Always call the superclass so it can save the view hierarchy state"
+        super.onSaveInstanceState(savedInstanceState) ;
     }
+
 
     public void onPauseCompteur (View view) {
         if (!compteur.getEnPause()) {  // le compteur tourne, on veut le mettre en pause
@@ -98,73 +153,85 @@ public class SeanceActivity extends AppCompatActivity implements Declencheur {
 
     private void affichageEtatSeance() {
 
-        if (etatSeance.estEnPreparation()) {  // on est à l'activité de préparation
+        // Variables locales
+        int couleurPreparation, couleurSequence, couleurCycle, couleurTravail, couleurRepos, couleurReposLong ;
+        String texteSequence, texteCycle ;
 
-            // TextView de l'activité de préparation
-            String textePreparation = "Préparation : " + seance.getTpsPreparation() + "s" ;
-            vueTextePreparation.setText(textePreparation) ;
-            vueTextePreparation.setTextColor(Color.BLACK) ;
+        // 1. Affectation de valeurs aux différentes variables locales
 
-            // TextView des numéros de séquence et de cycle
-            String texteSequence = "Sequence" ;
-            vueTexteSequence.setText(texteSequence) ;
-            vueTexteSequence.setTextColor(Color.LTGRAY) ;
-
-            String texteCycle = "Cycle" ;
-            vueTexteCycle.setText(texteCycle) ;
-            vueTexteCycle.setTextColor(Color.LTGRAY) ;
-
-            // TextView des autres activités
-            String texteTravail = "Travail : " + seance.getTpsTravail() + "s" ;
-            vueTexteTravail.setText(texteTravail) ;
-            vueTexteTravail.setTextColor(Color.LTGRAY) ;
-
-            String texteRepos = "Repos : " + seance.getTpsRepos() + "s" ;
-            vueTexteRepos.setText(texteRepos) ;
-            vueTexteRepos.setTextColor(Color.LTGRAY) ;
-
-            String texteReposLong = "Repos long : " + seance.getTpsReposLong() + "s" ;
-            vueTexteReposLong.setText(texteReposLong) ;
-            vueTexteReposLong.setTextColor(Color.LTGRAY) ;
+        // Etat Présentation
+        if (etatSeance.estEnPreparation()) {
+            texteSequence = "Sequence n°0 / " + seance.getNbSequences() ;
+            texteCycle = "Cycle n°0 / " + seance.getNbCycles() ;
+            couleurPreparation = Color.BLACK ;
+            couleurSequence = Color.LTGRAY ;
+            couleurCycle = Color.LTGRAY ;
+            couleurTravail = Color.LTGRAY ;
+            couleurRepos = Color.LTGRAY ;
+            couleurReposLong = Color.LTGRAY ;
         }
-        else {  // On est dans une séquence
-
-            // TextView de l'activité de préparation en gris
-            vueTextePreparation.setTextColor(Color.LTGRAY) ;
-
-            // TextView des numéros de cycles et de séquences
-            String texteSequence = "Sequence n°" + etatSeance.getNumSeq() + " / " + seance.getNbSequences() ;
-            vueTexteSequence.setText(texteSequence) ;
-            vueTexteSequence.setTextColor(Color.GRAY) ;
-
-            String texteCycle = "Cycle n°" + etatSeance.getNumCycle() + " / " + seance.getNbCycles() ;
-            vueTexteCycle.setText(texteCycle) ;
-            vueTexteCycle.setTextColor(Color.GRAY) ;
-
-            // TextView des activités (travail, repos, ou repos long) en noir ou gris selon l'activité en cours
-            if (etatSeance.estEnTravail()) {  // activité "travail"
-                vueTexteTravail.setTextColor(Color.BLACK) ;
-                vueTexteRepos.setTextColor(Color.GRAY) ;
-                vueTexteReposLong.setTextColor(Color.GRAY) ;
+        // Etat Séquence (== ! Etat Présentation)
+        else {
+            texteSequence = "Séquence n°" + etatSeance.getNumSeq() + " / " + seance.getNbSequences() ;
+            texteCycle = "Cycle n°" + etatSeance.getNumCycle() + " / " + seance.getNbCycles() ;
+            couleurPreparation = Color.LTGRAY ;
+            couleurSequence = Color.GRAY ;
+            couleurCycle = Color.GRAY ;
+            // Etat Travail
+            if (etatSeance.estEnTravail()) {
+                couleurTravail = Color.BLACK ;
+                couleurRepos = Color.LTGRAY ;
+                couleurReposLong = Color.LTGRAY ;
             }
-            else if (etatSeance.estEnRepos()) {  // activité "repos"
-                vueTexteTravail.setTextColor(Color.GRAY);
-                vueTexteRepos.setTextColor(Color.BLACK);
-                vueTexteReposLong.setTextColor(Color.GRAY);
+            // Etat Repos
+            else if (etatSeance.estEnRepos()) {
+                couleurTravail = Color.LTGRAY ;
+                couleurRepos = Color.BLACK ;
+                couleurReposLong = Color.LTGRAY ;
             }
-            else if (etatSeance.estEnReposLong()) {  // activité "repos long"
-                vueTexteTravail.setTextColor(Color.GRAY) ;
-                vueTexteRepos.setTextColor(Color.GRAY) ;
-                vueTexteReposLong.setTextColor(Color.BLACK) ;
+            // Etat Repos Long
+            else {
+                couleurTravail = Color.LTGRAY ;
+                couleurRepos = Color.LTGRAY ;
+                couleurReposLong = Color.BLACK ;
             }
         }
+
+        // 2. Attribution des variables locales aux TextViews
+
+        // TextView de préparation
+        String textePreparation = "Préparation : " + seance.getTpsPreparation() + "s" ;
+        vueTextePreparation.setText(textePreparation) ;
+        vueTextePreparation.setTextColor(couleurPreparation) ;
+
+        // TextView de séquence
+        vueTexteSequence.setText(texteSequence) ;
+        vueTexteSequence.setTextColor(couleurSequence) ;
+
+        // TextView de cycle
+        vueTexteCycle.setText(texteCycle) ;
+        vueTexteCycle.setTextColor(couleurCycle) ;
+
+        // TextView de travail
+        String texteTravail = "Travail : " + seance.getTpsTravail() + "s" ;
+        vueTexteTravail.setText(texteTravail) ;
+        vueTexteTravail.setTextColor(couleurTravail) ;
+
+        // TextView de repos
+        String texteRepos = "Repos : " + seance.getTpsRepos() + "s" ;
+        vueTexteRepos.setText(texteRepos) ;
+        vueTexteRepos.setTextColor(couleurRepos) ;
+
+        // TextView de repos long
+        String texteReposLong = "Repos long : " + seance.getTpsReposLong() + "s" ;
+        vueTexteReposLong.setText(texteReposLong) ;
+        vueTexteReposLong.setTextColor(couleurReposLong) ;
     }
 
     private void pageSuivante() {
         Intent intention = new Intent (SeanceActivity.this, SeanceConclusionActivity.class) ;
         startActivity (intention) ;
     }
-
 
     // Méthodes de l'interface Declencheur
 
@@ -189,52 +256,4 @@ public class SeanceActivity extends AppCompatActivity implements Declencheur {
         affichageEtatSeance() ;  // Affichage
     }
 
-
-
-    private void lanceEntrainement() {
-
-        // Classe asynchrone permettant de récupérer les seances et de lancer l'entrainement sportif
-        class GetSeances extends AsyncTask<Void, Void, List<Seance>> {
-
-            @Override
-            protected List<Seance> doInBackground (Void... voids) {
-                List<Seance> listeSeances = cbdd.getAppDatabase().seanceDao().getAll() ;
-                return listeSeances ;
-            }
-
-            @Override
-            protected void onPostExecute (List<Seance> seances) {
-                super.onPostExecute(seances) ;
-
-    /////////////////////// Mettre toute cette partie dans une méthode d'initialisation /////////////////////////
-
-                // Récuparation (des paramètres) de la séance
-                seance = seances.get(1) ;
-
-                // Initialisation de l'état de la séance
-                etatSeance = new EtatSeance (seance) ;
-
-                // Instanciation du compteur
-                compteur = new Compteur (SeanceActivity.this, true) ;
-
-                // Initialisation des durées -- EN FAIRE UNE METHODE A PART - une méthode ici ou une méthode de DeclencheActivitesEntrainement ? Plutôt ici car la précédente est générique et ne sais pas les temps que ses déclencheurs possèdent
-                compteur.addDuree(seance.getTpsPreparation()) ;
-                for (int i = 0 ; i<seance.getNbSequences() ; i++) {
-                    for (int j = 0 ; j<seance.getNbCycles()-1 ; j++) {  // -1 pour ne pas avoir de repos court avant un repos long (cas traité hors de la boucle après)
-                        compteur.addDuree(seance.getTpsTravail()) ;
-                        compteur.addDuree(seance.getTpsRepos()) ;
-                    }
-                    compteur.addDuree(seance.getTpsTravail()) ;
-                    compteur.addDuree(seance.getTpsReposLong());
-                }
-
-                // Démarrage des activités sportives
-                compteur.declencheActivites() ;
-            }
-        }
-
-        // Création d'un objet de type GetSeances et execution de la demande asynchrone
-        GetSeances gs = new GetSeances() ;
-        gs.execute() ;
-    }
 }
