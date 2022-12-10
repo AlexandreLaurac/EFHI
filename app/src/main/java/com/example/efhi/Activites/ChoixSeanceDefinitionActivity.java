@@ -94,10 +94,6 @@ public class ChoixSeanceDefinitionActivity extends AppCompatActivity {
             protected Seance doInBackground (Void... voids) {
                 // On enregistre la séance dans la BDD
                 cbdd.getAppDatabase().seanceDao().insert(seanceBDD) ;
-
-                long nbOfElements = cbdd.getAppDatabase().seanceDao().getNbOfElements() ;
-                LOGGER.log(Level.INFO, "ChoixSeanceDefinitionActivity - nombre d'éléments dans la base : " + nbOfElements) ;
-
                 return seanceBDD ;
             }
 
