@@ -1,12 +1,15 @@
 package com.example.efhi.Modele.BDD;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "seance")
-public class Seance {
+public class Seance implements Parcelable {
 
     // Attributs
     @PrimaryKey(autoGenerate = true) private long id ;
@@ -33,6 +36,19 @@ public class Seance {
         this.categorie = categorie ;
         this.titre = titre ;
     }
+
+    @Ignore
+    protected Seance (Parcel in) {
+        tpsPreparation = in.readInt() ;
+        nbSequences = in.readInt() ;
+        nbCycles = in.readInt() ;
+        tpsTravail = in.readInt() ;
+        tpsRepos = in.readInt() ;
+        tpsReposLong = in.readInt() ;
+        categorie = in.readString() ;
+        titre = in.readString() ;
+    }
+
 
     // Getters
     public long getId () {
@@ -109,4 +125,32 @@ public class Seance {
         this.titre = titre ;
     }
 
+
+    // Implémentation de l'interface Parcelable
+    public static final Creator<Seance> CREATOR = new Creator<>() {
+        @Override
+        public Seance createFromParcel (Parcel in) {
+            return new Seance(in) ;
+        }
+
+        @Override
+        public Seance[] newArray (int size) {
+            return new Seance[size] ;
+        }
+    } ;
+
+    @Override
+    public int describeContents() {
+        return 0 ;
+    }
+
+    @Override
+    public void writeToParcel (Parcel parcel, int i) {
+        parcel.writeInt(tpsPreparation) ;
+        parcel.writeInt(nbSequences) ;
+        parcel.writeInt(nbCycles) ;
+        parcel.writeInt(tpsTravail) ;
+        parcel.writeInt(tpsRepos) ;
+        parcel.writeInt(tpsReposLong) ;
+    }
 }
