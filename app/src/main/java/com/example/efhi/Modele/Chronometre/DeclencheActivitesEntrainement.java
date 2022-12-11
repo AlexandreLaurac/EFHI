@@ -1,6 +1,7 @@
 package com.example.efhi.Modele.Chronometre;
 
 import com.example.efhi.Activites.Declencheur;
+import com.example.efhi.Modele.Donnees.Activite;
 
 import java.util.ArrayList;
 
@@ -53,5 +54,8 @@ public class DeclencheActivitesEntrainement {
         declencheur.miseAJourCompteur() ;
     }
 
+    public void jouerSon (int typeSon) {
+        declencheur.jeuSon(typeSon) ;
+    }
 
 }

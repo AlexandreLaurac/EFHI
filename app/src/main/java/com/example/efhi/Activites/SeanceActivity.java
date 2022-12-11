@@ -4,20 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.AsyncTask;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.efhi.Modele.BDD.DatabaseClient;
 import com.example.efhi.Modele.Chronometre.Compteur;
+import com.example.efhi.Modele.Donnees.Activite;
 import com.example.efhi.Modele.Donnees.EtatSeance;
 import com.example.efhi.Modele.BDD.Seance;
 import com.example.efhi.Modele.MonApplication;
 import com.example.efhi.R;
 
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,12 +24,19 @@ import java.util.logging.Logger;
 public class SeanceActivity extends AppCompatActivity implements Declencheur {
 
     // Attributs statiques
+        // Données sauvegardées dans le Bundle savedInstanceState
     public static final String TOUR = "tour" ;
     public static final String EN_PAUSE = "pause" ;
     public static final String UPDATED_TIME = "update" ;
+        // LOGGER
     private static final Logger LOGGER = Logger.getAnonymousLogger() ;
     static { System.setProperty("java.util.logging.SimpleFormatter.format", "[%1$s] %4$-10s | (%3$s) %2$-15s | %5$s\n") ; LOGGER.setLevel(Level.INFO) ; }
-
+        // Audio
+    private static final float LEFT_VOLUME_VALUE = 1.0f ;
+    private static final float RIGHT_VOLUME_VALUE = 1.0f ;
+    private static final int MUSIC_LOOP = 0 ;
+    private static final int SOUND_PLAY_PRIORITY = 0 ;
+    private static final float PLAY_RATE = 1.0f ;
 
     // Attributs
         // Vues
@@ -46,6 +52,12 @@ public class SeanceActivity extends AppCompatActivity implements Declencheur {
     private Seance seance ;
     private EtatSeance etatSeance ;
     private Compteur compteur ;
+    private boolean onPauseCompteurForSavedInstanceState ;
+
+        // Audio
+    private SoundPool soundPool ;
+    private int[] soundId ;
+
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -61,11 +73,14 @@ public class SeanceActivity extends AppCompatActivity implements Declencheur {
         // Initialisation de l'état de la séance
         etatSeance = new EtatSeance (seance) ;
 
+        // Initialisation de l'audio
+        initialisationAudio() ;
+
         // Instanciation du compteur
-        compteur = new Compteur (this, true) ;
+        compteur = new Compteur (this) ;
 
         // Initialisation des durées
-        initialisationDesDurees() ;
+        initialisationDesDonnees() ;
 
         // Lancement des activités en fonction du savedInstanceState
         lancementActivitesSportives (savedInstanceState) ;
@@ -82,14 +97,29 @@ public class SeanceActivity extends AppCompatActivity implements Declencheur {
         boutonPause = findViewById (R.id.activity_seance_boutonPause) ;
     }
 
-    private void initialisationDesDurees() {
+    private void initialisationAudio() {
+        soundPool = new SoundPool.Builder().setMaxStreams(1).build() ;
+        soundId = new int[3] ;
+        soundId[0] = soundPool.load(this, R.raw.travail, 1) ;  // son associé aux activités de travail (PREPARATION et TRAVAIL)
+        soundId[1] = soundPool.load(this, R.raw.repos, 1) ;    // son associé aux activités de repos (REPOS et REPOS_LONG)
+        soundId[2] = soundPool.load(this, R.raw.reprise, 1) ;  // son associé à la notification de reprise du travail
+    }
+
+    private void initialisationDesDonnees() {
+        // Phase de préparation
         compteur.addDuree(seance.getTpsPreparation()) ;
+        // Séquence
         for (int i = 0 ; i<seance.getNbSequences() ; i++) {
+            // Cycle
             for (int j = 0 ; j<seance.getNbCycles()-1 ; j++) {  // -1 pour ne pas avoir de repos court avant un repos long (cas traité hors de la boucle après)
+                // Travail
                 compteur.addDuree(seance.getTpsTravail()) ;
+                // Repos
                 compteur.addDuree(seance.getTpsRepos()) ;
             }
+            // Travail
             compteur.addDuree(seance.getTpsTravail()) ;
+            // Repos long
             compteur.addDuree(seance.getTpsReposLong()) ;
         }
     }
@@ -123,15 +153,12 @@ public class SeanceActivity extends AppCompatActivity implements Declencheur {
     @Override
     public void onSaveInstanceState (Bundle savedInstanceState) {
 
+        LOGGER.log(Level.INFO, "passage par onSaveInstanceState()") ;
+
         // Sauvegarde des attributs de compteur suffisant pour régénérer l'interface
         savedInstanceState.putInt(TOUR, compteur.getTour()) ;
-        savedInstanceState.putBoolean(EN_PAUSE, compteur.getEnPause()) ;
+        savedInstanceState.putBoolean(EN_PAUSE, onPauseCompteurForSavedInstanceState) ;
         savedInstanceState.putLong(UPDATED_TIME, compteur.getUpdatedTime()) ;
-
-        // On met le compteur en pause s'il ne l'est pas, pour éviter la poursuite des décomptes de l'instance de compteur de cette activité
-        if (!compteur.getEnPause()) {
-            compteur.pause() ;
-        }
 
         // "Always call the superclass so it can save the view hierarchy state"
         super.onSaveInstanceState(savedInstanceState) ;
@@ -149,6 +176,20 @@ public class SeanceActivity extends AppCompatActivity implements Declencheur {
             String texteBoutonPause = "pause" ;
             boutonPause.setText(texteBoutonPause) ;
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause() ;
+
+
+        // Arrêt du compteur
+        onPauseCompteurForSavedInstanceState = compteur.getEnPause() ;  // OnPause est appelée avant onSaveInstanceState, on sauvegarde donc l'état du compteur
+        compteur.stop() ;
+
+        // Arrêt de l'audio
+        soundPool.release() ;
+        soundPool = null ;
     }
 
     private void affichageEtatSeance() {
@@ -231,6 +272,7 @@ public class SeanceActivity extends AppCompatActivity implements Declencheur {
     private void pageSuivante() {
         Intent intention = new Intent (SeanceActivity.this, SeanceConclusionActivity.class) ;
         startActivity (intention) ;
+        finish() ;
     }
 
     // Méthodes de l'interface Declencheur
@@ -256,4 +298,22 @@ public class SeanceActivity extends AppCompatActivity implements Declencheur {
         affichageEtatSeance() ;  // Affichage
     }
 
+    public void jeuSon (int typeSon) {
+
+        switch (typeSon) { // son de début d'activité ou de milieu d'activité
+
+            case 0 : // son de début d'activité
+                if (etatSeance.estEnPreparation() || etatSeance.estEnTravail()) {
+                    soundPool.play(soundId[0], LEFT_VOLUME_VALUE, RIGHT_VOLUME_VALUE, SOUND_PLAY_PRIORITY, MUSIC_LOOP, PLAY_RATE);
+                }
+                else if (etatSeance.estEnRepos() || etatSeance.estEnReposLong()) {
+                    soundPool.play(soundId[1], LEFT_VOLUME_VALUE, RIGHT_VOLUME_VALUE, SOUND_PLAY_PRIORITY, MUSIC_LOOP, PLAY_RATE);
+                }
+                break ;
+            case 1 :  // son à l'intérieur d'une activité
+                if (etatSeance.estEnRepos() || etatSeance.estEnReposLong()) {  // on prévient l'utilisateur, dans les phases de repos, que l'activité de travail va bientôt recommencer
+                    soundPool.play(soundId[2], 0.5f*LEFT_VOLUME_VALUE, 0.5f*RIGHT_VOLUME_VALUE, SOUND_PLAY_PRIORITY, MUSIC_LOOP, PLAY_RATE) ;
+                }
+        }
+    }
 }
