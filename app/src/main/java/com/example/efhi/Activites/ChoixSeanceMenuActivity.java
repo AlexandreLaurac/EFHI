@@ -112,7 +112,7 @@ public class ChoixSeanceMenuActivity extends AppCompatActivity {
         if (!existSeancesEnregistrees) {
             Intent intention = new Intent (this, ChoixSeanceNonDisponibleActivity.class) ;
             String titre = "Il n'y a aucune séance enregistrée dans l'application" ;
-            String description = "Pour en enregistrer une, allez dans \"Définition de séance\" et cliquez sur \"ENREGISTRER\" après avoir défini une séance" ;
+            String description = "Pour en enregistrer une, allez dans \"Définition de séance\" et cliquez sur \"Enregistrer\" après avoir défini une séance" ;
             intention.putExtra(ChoixSeanceNonDisponibleActivity.TITRE, titre) ;
             intention.putExtra(ChoixSeanceNonDisponibleActivity.EXPLICATION, description) ;
             startActivity (intention) ;
