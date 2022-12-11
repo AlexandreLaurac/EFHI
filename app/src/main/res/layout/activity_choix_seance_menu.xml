@@ -11,18 +11,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="Elaboration de la séance d'entrainement"
-        android:textSize="30sp"/>
+        android:text="Menu principal"
+        android:textSize="40sp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:text="Faites un choix"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:gravity="center"
+        android:text="Pour choisir votre séance, cliquez sur l'un des boutons suivants"
         android:textSize="25sp"/>
 
     <LinearLayout

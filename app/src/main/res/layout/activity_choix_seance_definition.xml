@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,23 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:gravity="center"
         android:text="Définition de la séance"
         android:textSize="30sp"/>
-
-<!--
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:gravity="center"
-        android:text="Entrez les paramètres de votre séance"
-        android:textSize="15sp"/>
--->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -39,6 +25,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:orientation="vertical">
 
             <!-- Préparation -->
@@ -76,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginStart="40dp">
 
                 <TextView
@@ -101,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginStart="80dp">
 
                 <TextView
@@ -126,7 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginStart="120dp">
 
                 <TextView
@@ -157,7 +144,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginStart="120dp">
 
                 <TextView
@@ -188,7 +175,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginStart="80dp">
 
                 <TextView
@@ -218,7 +205,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginStart="40dp">
 
                 <TextView
@@ -256,7 +243,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="7dp"
         android:paddingBottom="7dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:text="Enregistrer"
         android:textSize="20sp"

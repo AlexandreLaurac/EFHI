@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,25 +10,25 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:layout_gravity="center"
         android:text="@string/activity_ecran_accueil_texte1_bienvenue"
-        android:textSize="30sp"/>
+        android:textSize="35sp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:text="@string/activity_ecran_accueil_texte2_titre"
-        android:textSize="70sp"/>
+        android:textSize="60sp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:text="@string/activity_ecran_accueil_texte3_application"
@@ -39,9 +38,11 @@
         android:id="@+id/activity_ecran_accueil_bouton_commencer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_marginTop="80dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:layout_marginTop="50dp"
         android:layout_gravity="center"
         android:text="@string/activity_ecran_accueil_bouton1_commencer"
         android:textSize="20sp"

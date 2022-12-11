@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,32 +11,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="100dp"
         android:gravity="center"
-        android:text="Vue d'introduction\nà une séance"
-        android:textSize="40sp"/>
+        android:text="Prêt ?"
+        android:textSize="50sp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:gravity="center"
-        android:text="Vue ajoutée entre celles de choix des paramètres d'une séance et le lancement de la séance proprement dite, pour prévenir l'utilisateur. Trouver quels widgets afficher. Une image (pourquoi pas un coureur sur les starting blocks !) ? Du texte (Ex : 'La séance est prête, elle commencera lorsque vous cliquerez sur le bouton Commencer'. Prêt ?)"
-        android:textSize="20sp"/>
 
     <Button
         android:id="@+id/activity_seance_introduction_bouton_commencer"
-        android:layout_width="250dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:paddingTop="7dp"
-        android:paddingBottom="7dp"
-        android:layout_marginTop="40dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginTop="125dp"
         android:layout_gravity="center"
-        android:text="Commencer !"
-        android:textSize="20sp"
+        android:text="Partez !"
+        android:textSize="30sp"
         android:onClick="clicBoutonCommencer"/>
 
 </LinearLayout>

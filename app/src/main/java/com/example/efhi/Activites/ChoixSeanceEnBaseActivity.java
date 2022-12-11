@@ -22,15 +22,12 @@ public class ChoixSeanceEnBaseActivity extends AppCompatActivity {
     // Attributs de classe
     public static final String CATEGORIE_SEANCES = "categorie_seances" ;
     private static final Logger LOGGER = Logger.getAnonymousLogger() ;
-    static {
-        System.setProperty("java.util.logging.SimpleFormatter.format", "[%1$s] %4$-10s | (%3$s) %2$-15s | %5$s\n") ;
-        LOGGER.setLevel(Level.INFO) ;
-    }
+    static { System.setProperty("java.util.logging.SimpleFormatter.format", "[%1$s] %4$-10s | (%3$s) %2$-15s | %5$s\n") ; LOGGER.setLevel(Level.INFO) ; }
 
     // Attributs
     private DatabaseClient cbdd ;
-    private String categorieSeances ;
         // Attributs liés à l'affichage des séances sous forme de liste
+    private String categorieSeances ;
     private RecyclerView vue ;
     private AdaptateurDeSeance adaptateur ;
     private RecyclerView.LayoutManager gestDisp ;
@@ -41,9 +38,8 @@ public class ChoixSeanceEnBaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState) ;
         setContentView (R.layout.activity_choix_seance_en_base) ;
 
-        categorieSeances = getIntent().getStringExtra(CATEGORIE_SEANCES) ;
-
         // Titre
+        categorieSeances = getIntent().getStringExtra(CATEGORIE_SEANCES) ;
         TextView vueTexteTitre = findViewById (R.id.activity_choix_seance_en_base_titre) ;
         String titre ;
         switch (categorieSeances) {
@@ -72,13 +68,13 @@ public class ChoixSeanceEnBaseActivity extends AppCompatActivity {
         adaptateur = new AdaptateurDeSeance(null, this) ;
         vue.setAdapter(adaptateur) ;
 
-        afficheSeancesUtilisateur() ;  // chargement des données, création de l'adaptateur et remplissage de celui-ci avec la liste
+        // chargement des données et remplissage de l'adaptateur avec
+        afficheSeancesUtilisateur() ;
     }
-
 
     public void afficheSeancesUtilisateur() {
 
-        // Classe asynchrone permettant de récupérer les séances enregistrées dans la base par les utilisateurs
+        // Classe asynchrone permettant de récupérer des séances présentes dans la base (soit prédéfinies, soit enregistrées par les utilisateurs)
         class GetSeances extends AsyncTask<Void, Void, List<Seance>> {
 
             @Override
