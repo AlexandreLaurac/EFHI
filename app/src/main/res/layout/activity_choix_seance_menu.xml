@@ -68,8 +68,7 @@
             android:paddingBottom="7dp"
             android:text="Séances enregistrées"
             android:textSize="20sp"
-            android:onClick="clicBoutonSeancesEnregistrees"
-            android:background="@color/white"/>
+            android:onClick="clicBoutonSeancesEnregistrees" />
 
         <Button
             android:id="@+id/activity_choix_seance_menu_bouton_derniere_seance"
@@ -81,8 +80,7 @@
             android:paddingBottom="7dp"
             android:text="Dernière séance"
             android:textSize="20sp"
-            android:onClick="clicBoutonDerniereSeance"
-            android:background="@color/white"/>
+            android:onClick="clicBoutonDerniereSeance" />
 
     </LinearLayout>
 

@@ -75,17 +75,16 @@ public class ChoixSeanceMenuActivity extends AppCompatActivity {
                 super.onPostExecute(lasts) ;
 
                 // Post traitements concernant la dernière séance
-                if (existSeancesEnregistrees) {
-                    findViewById(R.id.activity_choix_seance_menu_bouton_seances_enregistrees).setBackgroundColor(Color.GRAY) ;
+                if (!existSeancesEnregistrees) {
+                    findViewById(R.id.activity_choix_seance_menu_bouton_seances_enregistrees).setBackgroundColor(Color.WHITE) ;
                 }
 
                 // Post traitements concernant la dernière séance
-                /*if (lasts.size() == 0) { // Il n'y a pas d'enregistrement dont la catégorie est 'last' dans la BDD
+                if (lasts.size() == 0) {
+                    findViewById(R.id.activity_choix_seance_menu_bouton_derniere_seance).setBackgroundColor(Color.WHITE) ;
                 }
-                else {*/
-                if (lasts.size() > 0) {
+                else {
                     existDerniereSeance = true ;
-                    findViewById(R.id.activity_choix_seance_menu_bouton_derniere_seance).setBackgroundColor(Color.GRAY) ;
                     derniereSeance = lasts.get(0) ;
                 }
                 ((MonApplication) ChoixSeanceMenuActivity.this.getApplication()).setLastExists(existDerniereSeance) ;

@@ -38,7 +38,7 @@ public class SeanceViewHolder extends RecyclerView.ViewHolder implements View.On
     public void afficher (Seance seance) {
         this.seance = seance ;
         // Titre
-        String titre = seance.getTitre().isEmpty() ? "Seance n°" + (seance.getId()-3) : seance.getTitre() ;
+        String titre = seance.getTitre().isEmpty() ? "Séance n°" + (seance.getId()-3) : seance.getTitre() ;
         vueTexteTitre.setText(titre) ;
         // Description
         //vueTexteDescription.setText("Description pour l'instant en dur") ;

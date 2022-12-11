@@ -97,7 +97,7 @@ public class ChoixSeanceAffichageActivity extends AppCompatActivity {
     public void affichageInitial() {
 
         // Mise à jour du texte des vues Texte en fonction des valeurs de 'seance'
-        String titre = seance.getTitre().isEmpty() ? "Seance" : seance.getTitre() ;
+        String titre = seance.getTitre().isEmpty() ? "Séance" : seance.getTitre() ;
         vueTexteTitre.setText(titre) ;
 
         String textePreparation = "" + seance.getTpsPreparation() ;
@@ -130,7 +130,6 @@ public class ChoixSeanceAffichageActivity extends AppCompatActivity {
         // Affichage des EditTexts
         for (EditText vue : listeEditTexts) {
             vue.setVisibility(View.VISIBLE) ;
-
         }
 
         // Remplissage des EditTexts avec les valeurs de la séance choisie
