@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.efhi.Modele.Chronometre.Compteur;
-import com.example.efhi.Modele.Donnees.Activite;
 import com.example.efhi.Modele.Donnees.EtatSeance;
 import com.example.efhi.Modele.BDD.Seance;
 import com.example.efhi.Modele.MonApplication;
@@ -181,7 +180,6 @@ public class SeanceActivity extends AppCompatActivity implements Declencheur {
     @Override
     public void onPause() {
         super.onPause() ;
-
 
         // Arrêt du compteur
         onPauseCompteurForSavedInstanceState = compteur.getEnPause() ;  // OnPause est appelée avant onSaveInstanceState, on sauvegarde donc l'état du compteur

@@ -8,7 +8,7 @@ public class MonApplication extends Application {
 
     // Informations à conserver
     private Seance seance ;
-    private boolean lastExists ;  // booléen indiquant l'existence dans la base d'un enregistrement de la précédente séance
+    private boolean lastExists ;  // booléen indiquant l'existence ou non dans la base d'un enregistrement de la précédente séance
 
     // Getters
     public Seance getSeance() {

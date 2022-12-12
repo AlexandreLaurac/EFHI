@@ -121,7 +121,6 @@ public class SeanceConclusionActivity extends AppCompatActivity {
     }
 
     public void quitter() {
-        // Quitter l'application - ou alors emmener vers une dernière vue qui dit au revoir à l'utilisateur et s'éteint toute seule ?
         finishAffinity() ;
         System.exit(0) ;
     }

@@ -1,7 +1,6 @@
 package com.example.efhi.Modele.Chronometre;
 
 import com.example.efhi.Activites.Declencheur;
-import com.example.efhi.Modele.Donnees.Activite;
 
 import java.util.ArrayList;
 

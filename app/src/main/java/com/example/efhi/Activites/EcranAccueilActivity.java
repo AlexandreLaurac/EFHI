@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.efhi.Modele.MonApplication;
 import com.example.efhi.R;
 
 public class EcranAccueilActivity extends AppCompatActivity {

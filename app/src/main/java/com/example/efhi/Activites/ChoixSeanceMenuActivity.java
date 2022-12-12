@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import com.example.efhi.Modele.BDD.DatabaseClient;
 import com.example.efhi.Modele.BDD.Seance;

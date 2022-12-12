@@ -51,11 +51,7 @@ public class DatabaseClient {
         db.execSQL("INSERT INTO seance (tpsPreparation, nbSequences, nbCycles, tpsTravail, tpsRepos, tpsReposLong, categorie, titre) VALUES (10, 2, 2, 15, 5, 10, \"preset\", \"Débutant\") ;") ;
         db.execSQL("INSERT INTO seance (tpsPreparation, nbSequences, nbCycles, tpsTravail, tpsRepos, tpsReposLong, categorie, titre) VALUES (20, 2, 3, 20, 5, 10, \"preset\", \"Intermédiaire\") ;") ;
         db.execSQL("INSERT INTO seance (tpsPreparation, nbSequences, nbCycles, tpsTravail, tpsRepos, tpsReposLong, categorie, titre) VALUES (30, 3, 4, 30, 5, 20, \"preset\", \"Avancé\") ;") ;
-        //db.execSQL("INSERT INTO seance (tpsPreparation, nbSequences, nbCycles, tpsTravail, tpsRepos, tpsReposLong, categorie, titre) VALUES (2, 1, 2, 5, 4, 6, \"utilisateur\", \"Séance facile\") ;") ;
-        //db.execSQL("INSERT INTO seance (tpsPreparation, nbSequences, nbCycles, tpsTravail, tpsRepos, tpsReposLong, categorie, titre) VALUES (5, 2, 3, 10, 3, 5, \"utilisateur\", \"Séance difficile\") ;") ;
-        //db.execSQL("INSERT INTO seance (tpsPreparation, nbSequences, nbCycles, tpsTravail, tpsRepos, tpsReposLong, categorie, titre) VALUES (1, 1, 1, 1, 1, 1, \"utilisateur\", \"\") ;") ;
-        //db.execSQL("INSERT INTO seance (tpsPreparation, nbSequences, nbCycles, tpsTravail, tpsRepos, tpsReposLong, categorie, titre) VALUES (10, 4, 3, 10, 2, 15, \"last\", \"\") ;") ;
-        //db.execSQL("INSERT INTO seance (tpsPreparation, nbSequences, nbCycles, tpsTravail, tpsRepos, tpsReposLong, categorie, titre) VALUES (1, 0, 0, 0, 0, 0, \"last\", \"\") ;") ;
+
 
         }
     };

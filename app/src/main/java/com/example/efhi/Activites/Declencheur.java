@@ -6,7 +6,7 @@ package com.example.efhi.Activites;
  *
  */
 public interface Declencheur {  // Au départ, une seule méthode dans cette interface : declenche
-                                // Le nom serait à revoir avec les autres méthodes ajoutées
+                                // Le nom serait à revoir étant donné les autres méthodes ajoutées
 
     public void declenche (int duree) ;
 

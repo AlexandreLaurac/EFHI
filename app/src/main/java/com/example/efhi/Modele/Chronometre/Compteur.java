@@ -1,6 +1,5 @@
 package com.example.efhi.Modele.Chronometre;
 
-import android.content.Context;
 import android.os.CountDownTimer;
 
 import com.example.efhi.Activites.Declencheur;

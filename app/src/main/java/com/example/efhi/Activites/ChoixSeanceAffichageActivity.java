@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 
 public class ChoixSeanceAffichageActivity extends AppCompatActivity {
@@ -80,7 +79,6 @@ public class ChoixSeanceAffichageActivity extends AppCompatActivity {
         vueTexteRepos = findViewById (R.id.activity_choix_seance_affichage_texteTpsRepos) ; listeTextViews.add(vueTexteRepos) ;
         vueTexteReposLong = findViewById (R.id.activity_choix_seance_affichage_texteTpsReposLong) ; listeTextViews.add(vueTexteReposLong) ;
         vueTexteTitre = findViewById (R.id.activity_choix_seance_affichage_texteTitre) ; //listeTextViews.add(vueTexteTitre) ;
-
 
         // Récupération des EditText
         listeEditTexts = new ArrayList<>() ;
