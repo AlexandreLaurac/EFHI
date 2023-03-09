@@ -25,7 +25,7 @@
         android:layout_marginEnd="20dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="Cliquez sur une séance pour afficher ses caractéristiques"
+        android:text="@string/activity_choix_seance_en_base_texte2_consigne"
         android:textSize="20sp"/>
 
     <androidx.recyclerview.widget.RecyclerView

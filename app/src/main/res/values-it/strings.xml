@@ -2,14 +2,14 @@
     <string name="app_name">EFHI</string>
 
     <!-- Ecran d'accueil -->
-    <string name="activity_ecran_accueil_texte1_bienvenue">Bienvenue dans</string>
-    <string name="activity_ecran_accueil_texte2_titre">EFHI</string>
-    <string name="activity_ecran_accueil_texte3_application">l\'application \n d\'entraînement fractionné \n de haute intensité</string>
-    <string name="activity_ecran_accueil_bouton1_commencer">commencer</string>
+    <string name="activity_ecran_accueil_texte1_bienvenue">Benvenuto in</string>
+    <string name="activity_ecran_accueil_texte2_titre">AFAI</string>
+    <string name="activity_ecran_accueil_texte3_application">l\'applicazione \n per l\'allenamento frazionato \n ad alta intensità</string>
+    <string name="activity_ecran_accueil_bouton1_commencer">cominciare</string>
 
-    <!-- Ecran du Menu principal -->
-    <string name="activity_choix_seance_menu_texte1_titre">Menu principal</string>
-    <string name="activity_choix_seance_menu_texte2_consigne">Pour choisir votre séance, cliquez sur l\'un des boutons suivants</string>
+    <!-- Menu principal -->
+    <string name="activity_choix_seance_menu_texte1_titre">Menù principale</string>
+    <string name="activity_choix_seance_menu_texte2_consigne">Per scegliere la tua seduta, cliquez sur l\'un des boutons suivants</string>
     <string name="activity_choix_seance_menu_bouton1_definition_seance">Définition de séance</string>
     <string name="activity_choix_seance_menu_bouton2_seances_predef">Séances prédéfinies</string>
     <string name="activity_choix_seance_menu_bouton3_seances_enreg">Séances enregistrées</string>
@@ -17,7 +17,7 @@
 
     <!-- Ecran de définition d'une séance -->
     <string name="activity_choix_seance_definition_texte1_titre">Définition de la séance</string>
-    <string name="activity_choix_seance_definition_texte2_temps_preparation">Temps de préparation : </string>
+    <string name="activity_choix_seance_definition_texte2_temps_preparation">Temps de préparation :</string>
     <string name="activity_choix_seance_definition_texte3_nombre_sequences">Nombre de séquences :</string>
     <string name="activity_choix_seance_definition_texte4_nombre_cycles">Nombre de cycles :</string>
     <string name="activity_choix_seance_definition_texte5_temps_travail">Temps de travail :</string>
@@ -30,7 +30,6 @@
 
     <!-- Ecrans de listing de séances en base (prédéfinies ou enregistrées) -->
     <string name="activity_choix_seance_en_base_texte2_consigne">Cliquez sur une séance pour afficher ses caractéristiques</string>
-
 
 
 </resources>

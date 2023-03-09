@@ -14,7 +14,7 @@
         android:layout_marginTop="40dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="Menu principal"
+        android:text="@string/activity_choix_seance_menu_texte1_titre"
         android:textSize="40sp"/>
 
     <TextView
@@ -25,7 +25,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
         android:gravity="center"
-        android:text="Pour choisir votre séance, cliquez sur l'un des boutons suivants"
+        android:text="@string/activity_choix_seance_menu_texte2_consigne"
         android:textSize="25sp"/>
 
     <LinearLayout
@@ -42,7 +42,7 @@
             android:layout_gravity="center"
             android:paddingTop="7dp"
             android:paddingBottom="7dp"
-            android:text="Définition de séance"
+            android:text="@string/activity_choix_seance_menu_bouton1_definition_seance"
             android:textSize="20sp"
             android:onClick="clicBoutonDefinirSeance" />
 
@@ -54,7 +54,7 @@
             android:layout_marginTop="10dp"
             android:paddingTop="7dp"
             android:paddingBottom="7dp"
-            android:text="Séances prédéfinies"
+            android:text="@string/activity_choix_seance_menu_bouton2_seances_predef"
             android:textSize="20sp"
             android:onClick="clicBoutonPresets"/>
 
@@ -66,7 +66,7 @@
             android:layout_marginTop="10dp"
             android:paddingTop="7dp"
             android:paddingBottom="7dp"
-            android:text="Séances enregistrées"
+            android:text="@string/activity_choix_seance_menu_bouton3_seances_enreg"
             android:textSize="20sp"
             android:onClick="clicBoutonSeancesEnregistrees" />
 
@@ -78,7 +78,7 @@
             android:layout_marginTop="10dp"
             android:paddingTop="7dp"
             android:paddingBottom="7dp"
-            android:text="Dernière séance"
+            android:text="@string/activity_choix_seance_menu_bouton4_derniere_seance"
             android:textSize="20sp"
             android:onClick="clicBoutonDerniereSeance" />
 

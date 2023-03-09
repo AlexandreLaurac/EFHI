@@ -13,7 +13,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
         android:gravity="center"
-        android:text="Définition de la séance"
+        android:text="@string/activity_choix_seance_definition_texte1_titre"
         android:textSize="30sp"/>
 
     <ScrollView
@@ -38,7 +38,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Temps de préparation :"
+                    android:text="@string/activity_choix_seance_definition_texte2_temps_preparation"
                     android:textSize="18sp"/>
 
                 <EditText
@@ -52,7 +52,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="s"
+                    android:text="@string/activity_choix_seance_definition_texte9_unite_secondes"
                     android:textSize="18sp"/>
 
             </LinearLayout>
@@ -69,7 +69,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nombre de séquences :"
+                    android:text="@string/activity_choix_seance_definition_texte3_nombre_sequences"
                     android:textSize="18sp"/>
 
                 <EditText
@@ -94,7 +94,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nombre de cycles :"
+                    android:text="@string/activity_choix_seance_definition_texte4_nombre_cycles"
                     android:textSize="18sp"/>
 
                 <EditText
@@ -119,7 +119,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Temps de travail :"
+                    android:text="@string/activity_choix_seance_definition_texte5_temps_travail"
                     android:textSize="18sp"/>
 
                 <EditText
@@ -133,7 +133,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="s"
+                    android:text="@string/activity_choix_seance_definition_texte9_unite_secondes"
                     android:textSize="18sp"/>
 
             </LinearLayout>
@@ -150,7 +150,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Temps de repos :"
+                    android:text="@string/activity_choix_seance_definition_texte6_temps_repos"
                     android:textSize="18sp"/>
 
                 <EditText
@@ -164,7 +164,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="s"
+                    android:text="@string/activity_choix_seance_definition_texte9_unite_secondes"
                     android:textSize="18sp"/>
 
             </LinearLayout>
@@ -181,7 +181,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Temps de repos long :"
+                    android:text="@string/activity_choix_seance_definition_texte7_temps_repos_long"
                     android:textSize="18sp"/>
 
                 <EditText
@@ -195,7 +195,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="s"
+                    android:text="@string/activity_choix_seance_definition_texte9_unite_secondes"
                     android:textSize="18sp"/>
 
             </LinearLayout>
@@ -211,7 +211,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Titre (facultatif) :"
+                    android:text="@string/activity_choix_seance_definition_texte8_titre_facultatif"
                     android:textSize="18sp"/>
 
                 <EditText
@@ -233,7 +233,7 @@
         android:paddingBottom="7dp"
         android:layout_marginTop="15dp"
         android:layout_gravity="center"
-        android:text="Valider"
+        android:text="@string/activity_choix_seance_definition_bouton1_valider"
         android:textSize="20sp"
         android:onClick="clicBoutonValider"/>
 
@@ -245,7 +245,7 @@
         android:paddingBottom="7dp"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
-        android:text="Enregistrer"
+        android:text="@string/activity_choix_seance_definition_bouton2_enregistrer"
         android:textSize="20sp"
         android:onClick="clicBoutonEnregistrer"/>
 
